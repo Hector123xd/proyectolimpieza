@@ -1,7 +1,6 @@
 package com.mycompany.tiendaproductoslimpieza;
 
 import Control.ControlMenu;
-import Control.ControlUser;
 import Model.Product;
 import Model.ProductDAO;
 import Model.User;
@@ -16,17 +15,16 @@ import View.Menu;
 public class TiendaProductosLimpieza {
 
     public static void main(String[] args) {
-
-//        User nodel = new User();
-//        UserDAO dao = new UserDAO();
-//        Login view = new Login();
-//        ControlUser control = new ControlUser(nodel, dao, view);
-//        control.show();
-        Product model = new Product();
-        ProductDAO dao = new ProductDAO();
-        Menu view = new Menu();
-        ControlMenu menuC = new ControlMenu(model, dao, view);
-        menuC.start();
+        
+        Product productM = new Product();
+        ProductDAO productDAO = new ProductDAO();
+        Menu menuView = new Menu();
+        User userM = new User();
+        UserDAO userDAO = new UserDAO();
+        Login loginView = new Login();
+        ControlMenu control = new ControlMenu(productM, productDAO, menuView, userM, userDAO, loginView);
+        
+        control.showLogin();
 
     }
 }

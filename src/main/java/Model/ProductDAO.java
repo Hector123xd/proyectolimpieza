@@ -15,7 +15,31 @@ public class ProductDAO {
 
     MySQLConnection con = new MySQLConnection();
 
-    public List listProducts() {
+    public int createProduct(Product product){
+        
+        final String query = "INSERT INTO producto (nombre_producto,precio_producto,id_categoria,stock_producto) VALUES (?,?,?,?);";
+        try(Connection c = con.getConnection();
+                PreparedStatement pst = c.prepareStatement(query)){
+            
+            pst.setString(1, product.getName_product());
+            pst.setFloat(2, product.getPrice_product());
+            pst.setInt(3, product.getCategory_product());
+            pst.setBoolean(4, product.getStock_product());
+            int result = pst.executeUpdate();
+            
+            if(result > 0){
+                return 1;
+            }else{
+                return 0;
+            }
+            
+        }catch(SQLException s){
+            System.out.println(s);
+            return 0;
+        }
+    }
+    
+    public List readProducts() {
 
         List<Product> list = new ArrayList<>();
         final String query = "SELECT * FROM producto";
@@ -62,6 +86,26 @@ public class ProductDAO {
             return 0;
         }
 
+    }
+    
+    public int deleteProduct(Product product){
+        
+        final String query = "DELETE FROM producto WHERE id_producto = ?;";
+        try(Connection c = con.getConnection();
+                PreparedStatement pst = c.prepareCall(query)){
+            
+           pst.setInt(1, product.getId_product());
+           int result = pst.executeUpdate();
+           if(result > 0){
+               return 1;
+           }else{
+               return 0;
+           }
+        }catch(SQLException s){
+            System.out.println(s);
+            return 0;
+        }
+        
     }
 
     public List productOutOfStock() {

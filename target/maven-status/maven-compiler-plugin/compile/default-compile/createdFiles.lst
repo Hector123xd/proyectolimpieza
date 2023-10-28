@@ -11,4 +11,3 @@ Model\MySQLConnection.class
 Model\User.class
 View\Menu.class
 Control\ControlMenu.class
-Control\ControlUser.class
