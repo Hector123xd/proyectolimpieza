@@ -8,15 +8,15 @@ public class Product {
 
     private Integer id_product;
     private String name_product;
-    private Float price_product;
-    private Integer category_product;
+    private Integer price_product;
+    private String category_product;
     private boolean stock_product;
     
     public Product(){
         
     }
     
-    public Product(Integer id_product,String name_product,Float price_product,Integer category_product,boolean stock_product){
+    public Product(Integer id_product,String name_product,Integer price_product,String category_product,boolean stock_product){
         this.id_product = id_product;
         this.name_product = name_product;
         this.price_product = price_product;
@@ -55,28 +55,28 @@ public class Product {
     /**
      * @return the price_product
      */
-    public Float getPrice_product() {
+    public Integer getPrice_product() {
         return price_product;
     }
 
     /**
      * @param price_product the price_product to set
      */
-    public void setPrice_product(Float price_product) {
+    public void setPrice_product(Integer price_product) {
         this.price_product = price_product;
     }
 
     /**
      * @return the category_product
      */
-    public Integer getCategory_product() {
+    public String getCategory_product() {
         return category_product;
     }
 
     /**
      * @param category_product the category_product to set
      */
-    public void setCategory_product(Integer category_product) {
+    public void setCategory_product(String category_product) {
         this.category_product = category_product;
     }
 

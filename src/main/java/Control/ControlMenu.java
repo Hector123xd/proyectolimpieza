@@ -1,11 +1,16 @@
 package Control;
 
+import Model.Customer;
+import Model.CustomerDAO;
 import Model.Product;
 import Model.ProductDAO;
 import Model.User;
 import Model.UserDAO;
+import View.CustomerView;
 import View.Login;
 import View.Menu;
+import View.ProductView;
+import View.SettingsView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -19,35 +24,67 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ControlMenu implements ActionListener {
 
+    //MenuFrame
+    Menu menuView = new Menu();
+    final String password = "abc123";
+    
     //ProductFrame
     Product productM = new Product();
     ProductDAO productDAO = new ProductDAO();
-    Menu menuView = new Menu();
-    DefaultTableModel model = new DefaultTableModel();
-    final String password = "abc123";
+    ProductView productView = new ProductView();
+    DefaultTableModel modelProduct = new DefaultTableModel();
+    
+    //CustomerFrame
+    Customer customerM = new Customer();
+    CustomerDAO customerDAO = new CustomerDAO();
+    CustomerView customerView = new CustomerView();
+    DefaultTableModel modelCustomer = new DefaultTableModel();
 
     //UserFrame
     User userM = new User();
     UserDAO userDAO = new UserDAO();
     Login loginView = new Login();
+    
+    //SettingFrame
+    SettingsView settingsView = new SettingsView();
 
-    public ControlMenu(Product productM, ProductDAO productDAO, Menu Menuview, User userM, UserDAO userDAO, Login loginView) {
+    public ControlMenu(Product productM, ProductDAO productDAO, Menu Menuview, User userM, UserDAO userDAO, Login loginView,Customer customerM ,CustomerDAO customerDAO) {
         this.productM = productM;
         this.productDAO = productDAO;
         this.menuView = Menuview;
         this.userM = userM;
         this.userDAO = userDAO;
         this.loginView = loginView;
-        this.menuView.productsbtn.addActionListener(this);
-        this.menuView.actualizarProductobtn.addActionListener(this);
-        this.menuView.okbtn.addActionListener(this);
-        this.menuView.productsStockbtn.addActionListener(this);
-        this.menuView.agregarProductobtn.addActionListener(this);
-        this.menuView.eliminarProductobtn.addActionListener(this);
+        //LoginView
         this.loginView.signinbtn.addActionListener(this);
+        //MenuView
+        this.menuView.productsbtn.addActionListener(this);
+        this.menuView.settingsbtn.addActionListener(this);
+        this.menuView.logoutbtn.addActionListener(this);
+        this.menuView.customerbtn.addActionListener(this);
+        //ProductsView
+        this.productView.actualizarProductobtn.addActionListener(this);
+        this.productView.okbtn.addActionListener(this);
+        this.productView.productsStockbtn.addActionListener(this);
+        this.productView.agregarProductobtn.addActionListener(this);
+        this.productView.eliminarProductobtn.addActionListener(this);
+        this.productView.listarProductbtn.addActionListener(this);
+        //CustomerView
+        this.customerView.deleteCustomerbtn.addActionListener(this);
+        this.customerView.updateCustomerbtn.addActionListener(this);
+        this.customerView.readCustomerbtn.addActionListener(this);
+        this.customerView.okCustomerbtn.addActionListener(this);
+        this.customerView.saveCustomerbtn.addActionListener(this);
+        
+    }
+    
+    public void showProduct(){
+        productView.setVisible(true);
+        productView.setLocationRelativeTo(null);
+        productView.setTitle("Product Section");
     }
 
-    public void showMenuProduct() {
+    public void showMenu() {
         menuView.setVisible(true);
         menuView.setLocationRelativeTo(null);
         menuView.setTitle("Tienda de limpieza");
@@ -58,31 +95,50 @@ public class ControlMenu implements ActionListener {
         loginView.setLocationRelativeTo(null);
         loginView.setTitle("Login Menu");
     }
+    
+    public void showSettings(){
+        settingsView.setVisible(true);
+        settingsView.setLocationRelativeTo(null);
+        settingsView.setTitle("Settings Menu");
+    }
+    
+    public void showCustomer(){
+        customerView.setVisible(true);
+        customerView.setLocationRelativeTo(null);
+        customerView.setTitle("Customer Menu");
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+        //Acciones de Login
         if (e.getSource() == loginView.signinbtn) {
 
             loginUsername();
 
             if (userDAO.validateUser(userM)) {
-
                 loginView.setVisible(false);
-                showMenuProduct();
+                showMenu();
 
             }
 
         }
         
+        //Acciones de Menu
         if (e.getSource() == menuView.productsbtn) {
-            menuView.jTabbedPane1.setSelectedIndex(1);
-            readProductos(menuView.prodcttbl);
-            clearFields();
-            clearTable();
-            readProductos(menuView.prodcttbl);
+            showProduct();
         }
-        if (e.getSource() == menuView.actualizarProductobtn) {
+        if(e.getSource() == menuView.settingsbtn){
+            showSettings();
+        }
+        if(e.getSource() == menuView.customerbtn){
+            showCustomer();
+        }
+        if(e.getSource() == menuView.logoutbtn){
+            logout();
+        }
+
+        //Acciones de Producto
+        if (e.getSource() == productView.actualizarProductobtn) {
             String pass = JOptionPane.showInputDialog("Digite la password de administrador");
 
             if (pass.equals(password)) {
@@ -93,7 +149,7 @@ public class ControlMenu implements ActionListener {
             }
 
         }
-        if (e.getSource() == menuView.agregarProductobtn) {
+        if (e.getSource() == productView.agregarProductobtn) {
             String pass = JOptionPane.showInputDialog("Digite la password de administrador");
 
             if (pass.equals(password)) {
@@ -103,7 +159,7 @@ public class ControlMenu implements ActionListener {
                 JOptionPane.showMessageDialog(null, "No cumple con los requisitos");
             }
         }
-        if (e.getSource() == menuView.eliminarProductobtn) {
+        if (e.getSource() == productView.eliminarProductobtn) {
             String pass = JOptionPane.showInputDialog("Digite la password de administrador");
 
             if (pass.equals(password)) {
@@ -113,26 +169,48 @@ public class ControlMenu implements ActionListener {
                 JOptionPane.showMessageDialog(null, "No cumple con los requisitos");
             }
         }
-        if (e.getSource() == menuView.okbtn) {
+        if (e.getSource() == productView.okbtn) {
             updateProduct();
             clearFields();
             clearTable();
-            readProductos(menuView.prodcttbl);
+            readProductos(productView.prodcttbl);
         }
-        if (e.getSource() == menuView.productsStockbtn) {
+        if (e.getSource() == productView.productsStockbtn) {
+            listarFueraStock(productView.prodcttbl);
             clearFields();
             clearTable();
-            listarFueraStock(menuView.prodcttbl);
+            listarFueraStock(productView.prodcttbl);
         }
+        if(e.getSource() == productView.listarProductbtn){
+            readProductos(productView.prodcttbl);
+            clearFields();
+            clearTable();
+            readProductos(productView.prodcttbl);
+        }
+        
+        //Acciones de Customer
+        if(e.getSource() == customerView.deleteCustomerbtn){
+            
+        }
+        if(e.getSource() == customerView.saveCustomerbtn){
+            createCustomer();
+        }
+        if(e.getSource() == customerView.updateCustomerbtn){
+            
+        }
+        if(e.getSource() == customerView.readCustomerbtn){
+            readCustomer(customerView.customertbl);
+        }
+        
 
     }
 
     //CRUD methods Product
     public void createProducto() {
-        productM.setName_product(menuView.nametxt.getText());
-        productM.setPrice_product(Float.parseFloat(menuView.pricetxt.getText()));
-        productM.setCategory_product(Integer.parseInt(menuView.categorytxt.getText()));
-        productM.setStock_product(Boolean.parseBoolean(menuView.stocktxt.getText()));
+        productM.setName_product(productView.nametxt.getText());
+        productM.setPrice_product(Integer.parseInt(productView.pricetxt.getText()));
+        productM.setCategory_product((productView.categorytxt.getText()));
+        productM.setStock_product(Boolean.parseBoolean(productView.stocktxt.getText()));
         int result = productDAO.createProduct(productM);
         if (result > 0) {
             System.out.println("agregado con exito");
@@ -143,7 +221,7 @@ public class ControlMenu implements ActionListener {
 
     public void readProductos(JTable tabla) {
 
-        model = (DefaultTableModel) tabla.getModel();
+        modelProduct = (DefaultTableModel) tabla.getModel();
         List<Product> list = productDAO.readProducts();
         Object[] raw = new Object[5];
         for (int i = 0; i < list.size(); i++) {
@@ -152,16 +230,16 @@ public class ControlMenu implements ActionListener {
             raw[2] = list.get(i).getPrice_product();
             raw[3] = list.get(i).getCategory_product();
             raw[4] = list.get(i).getStock_product();
-            model.addRow(raw);
+            modelProduct.addRow(raw);
         }
-        menuView.prodcttbl.setModel(model);
+        productView.prodcttbl.setModel(modelProduct);
 
     }
 
     public void updateProduct() {
 
-        productM.setStock_product(Boolean.parseBoolean(menuView.stocktxt.getText()));
-        productM.setId_product(Integer.valueOf(menuView.idtxt.getText()));
+        productM.setStock_product(Boolean.parseBoolean(productView.stocktxt.getText()));
+        productM.setId_product(Integer.valueOf(productView.idtxt.getText()));
         int result = productDAO.updateProduct(productM);
         if (result > 0) {
             System.out.println("Datos actualizados");
@@ -172,7 +250,7 @@ public class ControlMenu implements ActionListener {
     }
 
     public void deleteProduct() {
-        productM.setId_product(Integer.parseInt(menuView.idtxt.getText()));
+        productM.setId_product(Integer.parseInt(productView.idtxt.getText()));
         int result = productDAO.deleteProduct(productM);
         if (result > 0) {
             System.out.println("Delete with success");
@@ -182,57 +260,98 @@ public class ControlMenu implements ActionListener {
     }
 
     public void listarFueraStock(JTable tabla) {
-        model = (DefaultTableModel) tabla.getModel();
+        modelProduct = (DefaultTableModel) tabla.getModel();
         List<Product> list = productDAO.productOutOfStock();
-        Object[] raw = new Object[5];
+        Object[] row = new Object[5];
         for (int i = 0; i < list.size(); i++) {
-            raw[0] = list.get(i).getId_product();
-            raw[1] = list.get(i).getName_product();
-            raw[2] = list.get(i).getPrice_product();
-            raw[3] = list.get(i).getCategory_product();
-            raw[4] = list.get(i).getStock_product();
-            model.addRow(raw);
+            row[0] = list.get(i).getId_product();
+            row[1] = list.get(i).getName_product();
+            row[2] = list.get(i).getPrice_product();
+            row[3] = list.get(i).getCategory_product();
+            row[4] = list.get(i).getStock_product();
+            modelProduct.addRow(row);
         }
-        menuView.prodcttbl.setModel(model);
+        productView.prodcttbl.setModel(modelProduct);
+    }
+    
+    //Printin values on productJTable
+    public void printingInFields() {
+        int fila = productView.prodcttbl.getSelectedRow();
+        if (fila == -1) {
+            System.out.println("choose");
+        } else {
+            Integer id = (Integer) productView.prodcttbl.getValueAt(fila, 0);
+            String name = (String) productView.prodcttbl.getValueAt(fila, 1);
+            Float price = (Float) productView.prodcttbl.getValueAt(fila, 2);
+            Integer category = (Integer) productView.prodcttbl.getValueAt(fila, 3);
+            boolean stock = (boolean) productView.prodcttbl.getValueAt(fila, 4);
+
+            productView.idtxt.setText(String.valueOf(id));
+            productView.nametxt.setText(name);
+            productView.pricetxt.setText(String.valueOf(price));
+            productView.categorytxt.setText(String.valueOf(category));
+            productView.stocktxt.setText(String.valueOf(stock));
+
+        }
+    }
+    
+    //CRUD methods Customer
+    public void createCustomer(){
+        customerM.setDni_customer(Integer.parseInt(customerView.dniCustomertxt.getText()));
+        customerM.setName_customer(customerView.nameCustomertxt.getText());
+        customerM.setAddress_customer(customerView.addressCustomertxt.getText());
+        customerM.setStatus_customer(Integer.parseInt(customerView.statusCustomertxt.getText()));
+        int result = customerDAO.createCustomer(customerM);
+        if(result > 0){
+            System.out.println("agregado con exito");
+        }else{
+            System.out.println("error");
+        }
+    }
+    
+    public void readCustomer(JTable tabla){
+        
+        modelCustomer = (DefaultTableModel) tabla.getModel();
+        List<Customer> list = customerDAO.readCustomer();
+        Object[] row = new Object[5];
+        for(int i = 0; i < list.size(); i++){
+             row[0] = list.get(i).getId_customer();
+             row[1] = list.get(i).getDni_customer();
+             row[2] = list.get(i).getName_customer();
+             row[3] = list.get(i).getAddress_customer();
+             row[4] = list.get(i).getStatus_customer();
+             modelCustomer.addRow(row);
+        }
+        customerView.customertbl.setModel(modelCustomer);
+        
+    }
+    
+    public void updateCustomer(){
+        
+        
+        
+    }
+    
+    public void deleteCustomer(){
+        
     }
 
     //Clearing data from panel
     public void clearTable() {
 
-        for (int i = 0; i < menuView.prodcttbl.getRowCount(); i++) {
-            model.removeRow(i);
+        for (int i = 0; i < productView.prodcttbl.getRowCount(); i++) {
+            modelProduct.removeRow(i);
             i--;
         }
-        menuView.prodcttbl.setModel(model);
+        productView.prodcttbl.setModel(modelProduct);
     }
 
     public void clearFields() {
-        menuView.categorytxt.setText("");
-        menuView.idtxt.setText("");
-        menuView.nametxt.setText("");
-        menuView.pricetxt.setText("");
-        menuView.stocktxt.setText("");
-    }
-
-    //Printin values on JTable
-    public void printingInFields() {
-        int fila = menuView.prodcttbl.getSelectedRow();
-        if (fila == -1) {
-            System.out.println("choose");
-        } else {
-            Integer id = (Integer) menuView.prodcttbl.getValueAt(fila, 0);
-            String name = (String) menuView.prodcttbl.getValueAt(fila, 1);
-            Float price = (Float) menuView.prodcttbl.getValueAt(fila, 2);
-            Integer category = (Integer) menuView.prodcttbl.getValueAt(fila, 3);
-            boolean stock = (boolean) menuView.prodcttbl.getValueAt(fila, 4);
-
-            menuView.idtxt.setText(String.valueOf(id));
-            menuView.nametxt.setText(name);
-            menuView.pricetxt.setText(String.valueOf(price));
-            menuView.categorytxt.setText(String.valueOf(category));
-            menuView.stocktxt.setText(String.valueOf(stock));
-
-        }
+        productView.categorytxt.setText("");
+        productView.idtxt.setText("");
+        productView.nametxt.setText("");
+        productView.pricetxt.setText("");
+        productView.stocktxt.setText("");
     }
 
     //LoginMethods
@@ -243,6 +362,10 @@ public class ControlMenu implements ActionListener {
         userM.setName(name);
         userM.setPassword(password);
 
+    }
+    
+    public void logout(){
+        System.exit(0);
     }
 
 }

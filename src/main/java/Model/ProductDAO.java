@@ -23,7 +23,7 @@ public class ProductDAO {
             
             pst.setString(1, product.getName_product());
             pst.setFloat(2, product.getPrice_product());
-            pst.setInt(3, product.getCategory_product());
+            pst.setString(3, product.getCategory_product());
             pst.setBoolean(4, product.getStock_product());
             int result = pst.executeUpdate();
             
@@ -44,15 +44,17 @@ public class ProductDAO {
         List<Product> list = new ArrayList<>();
         final String query = "SELECT * FROM producto";
 
-        try (Connection c = con.getConnection(); PreparedStatement pst = c.prepareStatement(query); ResultSet rs = pst.executeQuery()) {
+        try (Connection c = con.getConnection(); 
+                PreparedStatement pst = c.prepareStatement(query); 
+                ResultSet rs = pst.executeQuery()) {
 
             while (rs.next()) {
 
                 Product product = new Product();
                 product.setId_product(rs.getInt("id_producto"));
                 product.setName_product(rs.getString("nombre_producto"));
-                product.setPrice_product(rs.getFloat("precio_producto"));
-                product.setCategory_product(rs.getInt("id_categoria"));
+                product.setPrice_product(rs.getInt("precio_producto"));
+                product.setCategory_product(rs.getString("categoria_producto"));
                 product.setStock_product(rs.getBoolean("stock_producto"));
                 list.add(product);
 
@@ -119,8 +121,8 @@ public class ProductDAO {
                 Product product = new Product();
                 product.setId_product(rs.getInt("id_producto"));
                 product.setName_product(rs.getString("nombre_producto"));
-                product.setPrice_product(rs.getFloat("precio_producto"));
-                product.setCategory_product(rs.getInt("id_categoria"));
+                product.setPrice_product(rs.getInt("precio_producto"));
+                product.setCategory_product(rs.getString("categoria_producto"));
                 product.setStock_product(rs.getBoolean("stock_producto"));
                 list.add(product);
 

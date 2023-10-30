@@ -1,12 +1,16 @@
 package com.mycompany.tiendaproductoslimpieza;
 
 import Control.ControlMenu;
+import Model.Customer;
+import Model.CustomerDAO;
 import Model.Product;
 import Model.ProductDAO;
 import Model.User;
 import Model.UserDAO;
+import View.CustomerView;
 import View.Login;
 import View.Menu;
+import View.SettingsView;
 
 /**
  *
@@ -22,7 +26,11 @@ public class TiendaProductosLimpieza {
         User userM = new User();
         UserDAO userDAO = new UserDAO();
         Login loginView = new Login();
-        ControlMenu control = new ControlMenu(productM, productDAO, menuView, userM, userDAO, loginView);
+        Customer customerM = new Customer();
+        CustomerDAO customerDAO = new CustomerDAO();
+        CustomerView customerView = new CustomerView();
+        SettingsView settingsView = new SettingsView();
+        ControlMenu control = new ControlMenu(productM, productDAO, menuView, userM, userDAO, loginView, customerM,customerDAO);
         
         control.showLogin();
 
