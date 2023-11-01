@@ -23,7 +23,7 @@ public class CustomerDAO {
         try(Connection c = con.getConnection();
                 PreparedStatement pst = c.prepareStatement(query)){
             
-            pst.setInt(1, customer.getDni_customer());
+            pst.setString(1, customer.getDni_customer());
             pst.setString(2, customer.getName_customer());
             pst.setString(3, customer.getAddress_customer());
             pst.setInt(4, customer.getStatus_customer());
@@ -54,7 +54,7 @@ public class CustomerDAO {
             while (rs.next()){
                 Customer customer = new Customer();
                 customer.setId_customer(rs.getInt("id_customer"));
-                customer.setDni_customer(rs.getInt("dni_customer"));
+                customer.setDni_customer(rs.getString("dni_customer"));
                 customer.setName_customer(rs.getString("nombre_customer"));
                 customer.setAddress_customer(rs.getString("direccion_customer"));
                 customer.setStatus_customer(rs.getInt("estado_customer"));
@@ -74,7 +74,7 @@ public class CustomerDAO {
         try(Connection c = con.getConnection();
                 PreparedStatement pst = c.prepareStatement(query)){
             
-            pst.setInt(1, customer.getDni_customer());
+            pst.setString(1, customer.getDni_customer());
             pst.setString(2, customer.getName_customer());
             pst.setString(3, customer.getAddress_customer());
             pst.setInt(4, customer.getStatus_customer());

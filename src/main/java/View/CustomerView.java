@@ -126,7 +126,7 @@ public class CustomerView extends javax.swing.JFrame {
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\user_icon_30x30.png")); // NOI18N
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 40, 30));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 40, 30));
 
         jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\direccionicon30x30.png")); // NOI18N
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, -1, 30));
@@ -148,6 +148,7 @@ public class CustomerView extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        customertbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         customertbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

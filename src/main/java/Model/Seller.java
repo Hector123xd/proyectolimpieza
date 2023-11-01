@@ -5,7 +5,7 @@ package Model;
  *
  * @author hecto
  */
-public class Sealer {
+public class Seller {
     
     private Integer id_sealer;
     private String dni_sealer;
@@ -13,7 +13,7 @@ public class Sealer {
     private String number_sealer;
     private Integer status_sealer;
     
-    public Sealer(Integer id_sealer,String dni_sealer,String name_sealer,String number_sealer,Integer status_sealer){
+    public Seller(Integer id_sealer,String dni_sealer,String name_sealer,String number_sealer,Integer status_sealer){
         this.id_sealer = id_sealer;
         this.dni_sealer = dni_sealer;
         this.name_sealer = name_sealer;
@@ -21,7 +21,7 @@ public class Sealer {
         this.status_sealer = status_sealer;
     }
     
-    public Sealer(){
+    public Seller(){
         
     }
 

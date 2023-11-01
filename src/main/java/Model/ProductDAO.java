@@ -22,7 +22,7 @@ public class ProductDAO {
                 PreparedStatement pst = c.prepareStatement(query)){
             
             pst.setString(1, product.getName_product());
-            pst.setFloat(2, product.getPrice_product());
+            pst.setInt(2, product.getPrice_product());
             pst.setString(3, product.getCategory_product());
             pst.setBoolean(4, product.getStock_product());
             int result = pst.executeUpdate();
@@ -132,6 +132,35 @@ public class ProductDAO {
             System.out.println(s);
         }
         return list;
+    }
+    
+    public Product searchProduct(Integer cod){
+        
+        Product product = new Product();
+        final String query = "SELECT * FROM product WHERER id_producto = ?;";
+        try(Connection c = con.getConnection();
+                PreparedStatement pst = c.prepareStatement(query)){
+            
+            pst.setInt(1, cod);
+            
+            try(ResultSet rs = pst.executeQuery()){
+                
+                if(rs.next()){
+                    
+                    product.setName_product(rs.getString("nombre_producto"));
+                    product.setPrice_product(rs.getInt("precio_producto"));
+                    product.setStock_product(rs.getBoolean("stock_producto"));
+                    
+                }
+                
+            }catch(SQLException s){
+                System.out.println(s);
+            }
+            
+        }catch(SQLException s){
+            System.out.println(s);
+        }
+        return product;
     }
 
 }

@@ -8,11 +8,11 @@ public class Customer {
 
     private Integer id_customer;
     private String name_customer;
-    private Integer dni_customer;
+    private String dni_customer;
     private String address_customer;
     private Integer status_customer;
     
-    public Customer(Integer id_customer,Integer dni_customer,String name_customer,String address_customer,Integer status_customer){
+    public Customer(Integer id_customer,String dni_customer,String name_customer,String address_customer,Integer status_customer){
         this.id_customer = id_customer;
         this.dni_customer = dni_customer;
         this.name_customer = name_customer;
@@ -55,14 +55,14 @@ public class Customer {
     /**
      * @return the dni_customer
      */
-    public Integer getDni_customer() {
+    public String getDni_customer() {
         return dni_customer;
     }
 
     /**
      * @param dni_customer the dni_customer to set
      */
-    public void setDni_customer(Integer dni_customer) {
+    public void setDni_customer(String dni_customer) {
         this.dni_customer = dni_customer;
     }
 
