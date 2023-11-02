@@ -1,6 +1,5 @@
 Model\Sells.class
 View\SellerView$1.class
-View\NewJFrame$1.class
 Model\SellsDAO.class
 View\Login$1.class
 View\ProductView$8.class
@@ -14,7 +13,6 @@ View\SellerView$4.class
 View\ProductView$1.class
 View\ProductView.class
 View\CustomerView$1.class
-View\NewJFrame.class
 View\ProductView$2.class
 View\Menu$2.class
 Model\ProductDAO.class
