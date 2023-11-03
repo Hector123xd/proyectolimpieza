@@ -7,8 +7,8 @@ import Model.Product;
 import Model.ProductDAO;
 import Model.Seller;
 import Model.SellerDAO;
-import Model.Sells;
-import Model.SellsDAO;
+import Model.SaleDetails;
+import Model.SaleDetailsDAO;
 import Model.User;
 import Model.UserDAO;
 import View.CustomerView;
@@ -36,8 +36,8 @@ public class TiendaProductosLimpieza {
         Seller sellerM = new Seller();
         SellerDAO sellerDAO =new SellerDAO();
         SettingsView settingsView = new SettingsView();
-        Sells sellsM = new Sells();
-        SellsDAO sellsDAO = new SellsDAO();
+        SaleDetails sellsM = new SaleDetails();
+        SaleDetailsDAO sellsDAO = new SaleDetailsDAO();
         ControlMenu control = new ControlMenu(productM, productDAO, menuView, userM, userDAO, loginView, customerM,customerDAO,sellerM,sellerDAO,sellsM,sellsDAO);
         
         control.showLogin();

@@ -2,7 +2,9 @@
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="0"/>
+    <Property name="undecorated" type="boolean" value="true"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -137,7 +139,7 @@
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\hecto\Desktop\imagesProject\iconProduct30x30.png"/>
+              <Image iconType="3" name="/images/iconProduct30x30.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="  Product"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -160,7 +162,7 @@
               <Color blue="99" green="99" red="99" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\hecto\Desktop\imagesProject\tagsale30x30.png"/>
+              <Image iconType="3" name="/images/tagsale30x30.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="   New Sale"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -186,7 +188,7 @@
               <Color blue="99" green="99" red="99" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\hecto\Desktop\imagesProject\sellericon30x30.png"/>
+              <Image iconType="3" name="/images/sellericon30x30.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="   Seller"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -212,7 +214,7 @@
               <Color blue="99" green="99" red="99" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\hecto\Desktop\imagesProject\carritoicon30x30.png"/>
+              <Image iconType="3" name="/images/carritoicon30x30.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="   Sales "/>
             <Property name="alignmentX" type="float" value="0.5"/>
@@ -239,7 +241,7 @@
               <Color blue="99" green="99" red="99" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\hecto\Desktop\imagesProject\gearsettingsicon30x30.png"/>
+              <Image iconType="3" name="/images/gearsettingsicon30x30.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="  Settings"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -262,7 +264,7 @@
               <Color blue="99" green="99" red="99" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\hecto\Desktop\imagesProject\log-out-icon-30x30.png"/>
+              <Image iconType="3" name="/images/log-out-icon-30x30.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="   Log out"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -285,7 +287,7 @@
               <Color blue="99" green="99" red="99" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\hecto\Desktop\imagesProject\customericon30x30.png"/>
+              <Image iconType="3" name="/images/customericon30x30.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Customer"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -313,7 +315,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\hecto\Desktop\imagesProject\houseicon30x30.png"/>
+              <Image iconType="3" name="/images/houseicon30x30.png"/>
             </Property>
           </Properties>
         </Component>

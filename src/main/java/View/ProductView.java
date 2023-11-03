@@ -41,9 +41,9 @@ public class ProductView extends javax.swing.JFrame {
         listarProductbtn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -52,7 +52,7 @@ public class ProductView extends javax.swing.JFrame {
         productsStockbtn.setBackground(new java.awt.Color(255, 255, 255));
         productsStockbtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         productsStockbtn.setForeground(new java.awt.Color(0, 0, 0));
-        productsStockbtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\listar30x30.png")); // NOI18N
+        productsStockbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/listar30x30.png"))); // NOI18N
         productsStockbtn.setText("Products out of stock");
         productsStockbtn.setBorder(null);
         productsStockbtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -198,7 +198,7 @@ public class ProductView extends javax.swing.JFrame {
         eliminarProductobtn.setBackground(new java.awt.Color(51, 51, 51));
         eliminarProductobtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         eliminarProductobtn.setForeground(new java.awt.Color(0, 0, 0));
-        eliminarProductobtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\trashcanicon30x30.png")); // NOI18N
+        eliminarProductobtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/trashcanicon30x30.png"))); // NOI18N
         eliminarProductobtn.setBorder(null);
         eliminarProductobtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         eliminarProductobtn.addActionListener(new java.awt.event.ActionListener() {
@@ -209,13 +209,13 @@ public class ProductView extends javax.swing.JFrame {
 
         agregarProductobtn.setBackground(new java.awt.Color(51, 51, 51));
         agregarProductobtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        agregarProductobtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\saveicon30x30.png")); // NOI18N
+        agregarProductobtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/saveicon30x30.png"))); // NOI18N
         agregarProductobtn.setBorder(null);
         agregarProductobtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         actualizarProductobtn.setBackground(new java.awt.Color(51, 51, 51));
         actualizarProductobtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        actualizarProductobtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\refreshcion30x30.png")); // NOI18N
+        actualizarProductobtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refreshcion30x30.png"))); // NOI18N
         actualizarProductobtn.setBorder(null);
         actualizarProductobtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         actualizarProductobtn.addActionListener(new java.awt.event.ActionListener() {
@@ -225,7 +225,7 @@ public class ProductView extends javax.swing.JFrame {
         });
 
         okbtn.setBackground(new java.awt.Color(51, 51, 51));
-        okbtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Documents\\NetBeansProjects\\TiendaProductosLimpieza\\src\\main\\resources\\images\\checkicon30x30.png")); // NOI18N
+        okbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkicon30x30.png"))); // NOI18N
         okbtn.setBorder(null);
         okbtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         okbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -236,7 +236,7 @@ public class ProductView extends javax.swing.JFrame {
 
         listarProductbtn.setBackground(new java.awt.Color(51, 51, 51));
         listarProductbtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        listarProductbtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\listar30x30.png")); // NOI18N
+        listarProductbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/listar30x30.png"))); // NOI18N
         listarProductbtn.setBorder(null);
         listarProductbtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         listarProductbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -245,15 +245,15 @@ public class ProductView extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\idicon30x30.png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/idicon30x30.png"))); // NOI18N
 
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\user_icon_30x30.png")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_icon_30x30.png"))); // NOI18N
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\resources\\images\\checkicon30x30.png"));
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/categoryicon30x30.png"))); // NOI18N
 
-        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\pricetagicon30x30.png")); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/stockicon30x30.png"))); // NOI18N
 
-        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\stockicon30x30.png")); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pricetagicon30x30.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -263,12 +263,12 @@ public class ProductView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jSeparator5)
@@ -324,7 +324,7 @@ public class ProductView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pricetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -332,7 +332,7 @@ public class ProductView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(categorytxt, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -409,13 +409,13 @@ public class ProductView extends javax.swing.JFrame {
     public javax.swing.JTextField idtxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

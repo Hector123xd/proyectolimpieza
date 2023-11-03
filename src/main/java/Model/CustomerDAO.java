@@ -45,7 +45,7 @@ public class CustomerDAO {
     public List readCustomer(){
         
         List<Customer> list = new ArrayList<>();
-        final String query = "SELECT * FROM cliente;";
+        final String query = "SELECT * FROM cliente";
         
         try(Connection c = con.getConnection();
                 PreparedStatement pst = c.prepareCall(query);

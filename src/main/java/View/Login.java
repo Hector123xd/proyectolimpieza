@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -21,6 +22,7 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        closebtn = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -29,10 +31,33 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         signinbtn = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        closebtn.setBackground(new java.awt.Color(0, 0, 0));
+        closebtn.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        closebtn.setForeground(new java.awt.Color(0, 0, 0));
+        closebtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        closebtn.setText("X");
+        closebtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        closebtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closebtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                closebtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                closebtnMouseExited(evt);
+            }
+        });
+        getContentPane().add(closebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -45,12 +70,12 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Email or Phone");
+        jLabel2.setText("Username");
 
         usertxt.setBackground(new java.awt.Color(255, 255, 255));
         usertxt.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        usertxt.setForeground(new java.awt.Color(0, 0, 0));
-        usertxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        usertxt.setForeground(new java.awt.Color(102, 102, 102));
+        usertxt.setBorder(null);
         usertxt.setCaretColor(new java.awt.Color(204, 204, 204));
         usertxt.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         usertxt.setMinimumSize(new java.awt.Dimension(40, 40));
@@ -62,8 +87,14 @@ public class Login extends javax.swing.JFrame {
 
         passwordtxt.setBackground(new java.awt.Color(255, 255, 255));
         passwordtxt.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        passwordtxt.setForeground(new java.awt.Color(0, 0, 0));
-        passwordtxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        passwordtxt.setForeground(new java.awt.Color(102, 102, 102));
+        passwordtxt.setBorder(null);
+        passwordtxt.setCaretColor(new java.awt.Color(204, 204, 204));
+        passwordtxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordtxtActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -78,6 +109,7 @@ public class Login extends javax.swing.JFrame {
         signinbtn.setFont(new java.awt.Font("Dialog", 0, 15)); // NOI18N
         signinbtn.setForeground(new java.awt.Color(255, 255, 255));
         signinbtn.setText("Sign in");
+        signinbtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -92,7 +124,9 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1)
-                    .addComponent(usertxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(usertxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator1)
+                    .addComponent(jSeparator2))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -104,11 +138,15 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(usertxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passwordtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(3, 3, 3)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(signinbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,14 +165,34 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_usertxtActionPerformed
 
+    private void passwordtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordtxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordtxtActionPerformed
+
+    private void closebtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closebtnMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_closebtnMouseClicked
+
+    private void closebtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closebtnMouseEntered
+        closebtn.setBackground(Color.BLUE);
+        closebtn.setForeground(Color.red);
+    }//GEN-LAST:event_closebtnMouseEntered
+
+    private void closebtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closebtnMouseExited
+        closebtn.setForeground(Color.BLACK);
+    }//GEN-LAST:event_closebtnMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel closebtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     public javax.swing.JPanel jPanel3;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     public javax.swing.JTextField passwordtxt;
     public javax.swing.JButton signinbtn;
     public javax.swing.JTextField usertxt;

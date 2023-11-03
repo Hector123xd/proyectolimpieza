@@ -98,7 +98,7 @@ public class CustomerView extends javax.swing.JFrame {
         jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 180, 20));
 
         saveCustomerbtn.setBackground(new java.awt.Color(51, 51, 51));
-        saveCustomerbtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\saveicon30x30.png")); // NOI18N
+        saveCustomerbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/saveicon30x30.png"))); // NOI18N
         saveCustomerbtn.setBorder(null);
         saveCustomerbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,12 +108,12 @@ public class CustomerView extends javax.swing.JFrame {
         jPanel2.add(saveCustomerbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, -1, -1));
 
         updateCustomerbtn.setBackground(new java.awt.Color(51, 51, 51));
-        updateCustomerbtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\refreshcion30x30.png")); // NOI18N
+        updateCustomerbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refreshcion30x30.png"))); // NOI18N
         updateCustomerbtn.setBorder(null);
         jPanel2.add(updateCustomerbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, -1, -1));
 
         deleteCustomerbtn.setBackground(new java.awt.Color(51, 51, 51));
-        deleteCustomerbtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\trashcanicon30x30.png")); // NOI18N
+        deleteCustomerbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/trashcanicon30x30.png"))); // NOI18N
         deleteCustomerbtn.setBorder(null);
         deleteCustomerbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,25 +122,25 @@ public class CustomerView extends javax.swing.JFrame {
         });
         jPanel2.add(deleteCustomerbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 480, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\user-id-icon_30x30.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user-id-icon_30x30.png"))); // NOI18N
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\user_icon_30x30.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_icon_30x30.png"))); // NOI18N
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 40, 30));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\direccionicon30x30.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/direccionicon30x30.png"))); // NOI18N
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, -1, 30));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\estadoproductoicon 30x30.png")); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estadoproductoicon 30x30.png"))); // NOI18N
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
 
         readCustomerbtn.setBackground(new java.awt.Color(51, 51, 51));
-        readCustomerbtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\listar30x30.png")); // NOI18N
+        readCustomerbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/listar30x30.png"))); // NOI18N
         readCustomerbtn.setBorder(null);
         jPanel2.add(readCustomerbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 480, -1, -1));
 
         okCustomerbtn.setBackground(new java.awt.Color(51, 51, 51));
-        okCustomerbtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\checkicon30x30.png")); // NOI18N
+        okCustomerbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkicon30x30.png"))); // NOI18N
         okCustomerbtn.setBorder(null);
         jPanel2.add(okCustomerbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 480, -1, -1));
 
@@ -160,16 +160,9 @@ public class CustomerView extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(customertbl);
@@ -182,7 +175,6 @@ public class CustomerView extends javax.swing.JFrame {
             customertbl.getColumnModel().getColumn(2).setMaxWidth(300);
             customertbl.getColumnModel().getColumn(3).setMinWidth(170);
             customertbl.getColumnModel().getColumn(3).setMaxWidth(170);
-            customertbl.getColumnModel().getColumn(4).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -190,16 +182,16 @@ public class CustomerView extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 750, 580));

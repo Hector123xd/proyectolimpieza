@@ -29,7 +29,9 @@ public class Menu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         topPanel.setBackground(new java.awt.Color(170, 35, 255));
@@ -51,7 +53,7 @@ public class Menu extends javax.swing.JFrame {
 
         productbtn.setBackground(new java.awt.Color(51, 51, 51));
         productbtn.setForeground(new java.awt.Color(204, 204, 204));
-        productbtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\iconProduct30x30.png")); // NOI18N
+        productbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconProduct30x30.png"))); // NOI18N
         productbtn.setText("  Product");
         productbtn.setBorder(null);
         productbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -62,7 +64,7 @@ public class Menu extends javax.swing.JFrame {
 
         sellbtn.setBackground(new java.awt.Color(51, 51, 51));
         sellbtn.setForeground(new java.awt.Color(153, 153, 153));
-        sellbtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\tagsale30x30.png")); // NOI18N
+        sellbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tagsale30x30.png"))); // NOI18N
         sellbtn.setText("   New Sale");
         sellbtn.setBorder(null);
         sellbtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -74,7 +76,7 @@ public class Menu extends javax.swing.JFrame {
 
         sellerbtn.setBackground(new java.awt.Color(51, 51, 51));
         sellerbtn.setForeground(new java.awt.Color(153, 153, 153));
-        sellerbtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\sellericon30x30.png")); // NOI18N
+        sellerbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sellericon30x30.png"))); // NOI18N
         sellerbtn.setText("   Seller");
         sellerbtn.setBorder(null);
         sellerbtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -86,7 +88,7 @@ public class Menu extends javax.swing.JFrame {
 
         listofsellsbtn.setBackground(new java.awt.Color(51, 51, 51));
         listofsellsbtn.setForeground(new java.awt.Color(153, 153, 153));
-        listofsellsbtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\carritoicon30x30.png")); // NOI18N
+        listofsellsbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/carritoicon30x30.png"))); // NOI18N
         listofsellsbtn.setText("   Sales ");
         listofsellsbtn.setAlignmentX(0.5F);
         listofsellsbtn.setBorder(null);
@@ -99,21 +101,21 @@ public class Menu extends javax.swing.JFrame {
 
         settingsbtn.setBackground(new java.awt.Color(51, 51, 51));
         settingsbtn.setForeground(new java.awt.Color(153, 153, 153));
-        settingsbtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\gearsettingsicon30x30.png")); // NOI18N
+        settingsbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gearsettingsicon30x30.png"))); // NOI18N
         settingsbtn.setText("  Settings");
         settingsbtn.setBorder(null);
         settingsbtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         logoutbtn.setBackground(new java.awt.Color(51, 51, 51));
         logoutbtn.setForeground(new java.awt.Color(153, 153, 153));
-        logoutbtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\log-out-icon-30x30.png")); // NOI18N
+        logoutbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/log-out-icon-30x30.png"))); // NOI18N
         logoutbtn.setText("   Log out");
         logoutbtn.setBorder(null);
         logoutbtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         customerbtn.setBackground(new java.awt.Color(51, 51, 51));
         customerbtn.setForeground(new java.awt.Color(153, 153, 153));
-        customerbtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\customericon30x30.png")); // NOI18N
+        customerbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/customericon30x30.png"))); // NOI18N
         customerbtn.setText("Customer");
         customerbtn.setBorder(null);
         customerbtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -122,7 +124,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(153, 153, 153));
         jLabel6.setText("Features");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\houseicon30x30.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/houseicon30x30.png"))); // NOI18N
 
         jLabel2.setForeground(new java.awt.Color(153, 153, 153));
         jLabel2.setText("Home");

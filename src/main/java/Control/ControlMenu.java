@@ -4,10 +4,12 @@ import Model.Customer;
 import Model.CustomerDAO;
 import Model.Product;
 import Model.ProductDAO;
+import Model.Sale;
+import Model.SaleDAO;
 import Model.Seller;
 import Model.SellerDAO;
-import Model.Sells;
-import Model.SellsDAO;
+import Model.SaleDetails;
+import Model.SaleDetailsDAO;
 import Model.User;
 import Model.UserDAO;
 import View.CustomerView;
@@ -19,7 +21,8 @@ import View.SellerView;
 import View.SettingsView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -29,11 +32,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author hecto
  */
-public class ControlMenu implements ActionListener, java.awt.event.KeyListener {
+public class ControlMenu implements ActionListener {
 
     //MenuFrame
     Menu menuView = new Menu();
     final String password = "abc123";
+    int item;
+    int totalPagar;
 
     //ProductFrame
     Product productM = new Product();
@@ -54,9 +59,16 @@ public class ControlMenu implements ActionListener, java.awt.event.KeyListener {
     DefaultTableModel modelSeller = new DefaultTableModel();
 
     //SellFrame
-    Sells sellsM = new Sells();
-    SellsDAO sellesDAO = new SellsDAO();
     SellView sellView = new SellView();
+    DefaultTableModel modelSale = new DefaultTableModel();
+
+    //SaleDetails
+    SaleDetails saleDetailsM = new SaleDetails();
+    SaleDetailsDAO saleDetailsDAO = new SaleDetailsDAO();
+
+    //Sale
+    Sale saleM = new Sale();
+    SaleDAO saleDAO = new SaleDAO();
 
     //UserFrame
     User userM = new User();
@@ -66,7 +78,22 @@ public class ControlMenu implements ActionListener, java.awt.event.KeyListener {
     //SettingFrame
     SettingsView settingsView = new SettingsView();
 
-    public ControlMenu(Product productM, ProductDAO productDAO, Menu Menuview, User userM, UserDAO userDAO, Login loginView, Customer customerM, CustomerDAO customerDAO, Seller seller, SellerDAO sellerDAO, Sells sells, SellsDAO sellsDAO) {
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    Thread.sleep(500);
+                    Calendar calendar = Calendar.getInstance();
+                    sellView.datetimetxt.setText(String.valueOf(calendar.getTime()));
+                } catch (Exception s) {
+                    System.out.println(s);
+                }
+            }
+        }
+    };
+
+    public ControlMenu(Product productM, ProductDAO productDAO, Menu Menuview, User userM, UserDAO userDAO, Login loginView, Customer customerM, CustomerDAO customerDAO, Seller seller, SellerDAO sellerDAO, SaleDetails sells, SaleDetailsDAO sellsDAO) {
         this.productM = productM;
         this.productDAO = productDAO;
         this.menuView = Menuview;
@@ -102,7 +129,11 @@ public class ControlMenu implements ActionListener, java.awt.event.KeyListener {
         this.sellerView.sellerupdatebtn.addActionListener(this);
         this.sellerView.sellersavebtn.addActionListener(this);
         //SellsView
-
+        this.sellView.searchProductbtn.addActionListener(this);
+        this.sellView.saveSellbtn.addActionListener(this);
+        this.sellView.deleteSellbtn.addActionListener(this);
+        this.sellView.searchcustomerbtn.addActionListener(this);
+        this.sellView.printcheckbtn.addActionListener(this);
     }
 
     public void showMenu() {
@@ -145,6 +176,8 @@ public class ControlMenu implements ActionListener, java.awt.event.KeyListener {
         sellView.setVisible(true);
         sellView.setLocationRelativeTo(null);
         sellView.setTitle("New Sell");
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 
     @Override
@@ -182,7 +215,7 @@ public class ControlMenu implements ActionListener, java.awt.event.KeyListener {
             showSells();
         }
 
-        //Acciones de Producto
+        //////////////      Acciones de Producto       /////////////
         if (e.getSource() == productView.actualizarProductobtn) {
             String pass = JOptionPane.showInputDialog("Digite la password de administrador");
 
@@ -194,6 +227,7 @@ public class ControlMenu implements ActionListener, java.awt.event.KeyListener {
             }
 
         }
+
         if (e.getSource() == productView.agregarProductobtn) {
             String pass = JOptionPane.showInputDialog("Digite la password de administrador");
 
@@ -204,6 +238,7 @@ public class ControlMenu implements ActionListener, java.awt.event.KeyListener {
                 JOptionPane.showMessageDialog(null, "No cumple con los requisitos");
             }
         }
+
         if (e.getSource() == productView.eliminarProductobtn) {
             String pass = JOptionPane.showInputDialog("Digite la password de administrador");
 
@@ -214,63 +249,255 @@ public class ControlMenu implements ActionListener, java.awt.event.KeyListener {
                 JOptionPane.showMessageDialog(null, "No cumple con los requisitos");
             }
         }
+
         if (e.getSource() == productView.okbtn) {
             updateProduct();
-            clearFields();
-            clearTable();
+            clearProductFields();
+            clearProductTable();
             readProductos(productView.prodcttbl);
         }
+
         if (e.getSource() == productView.productsStockbtn) {
             listarFueraStock(productView.prodcttbl);
-            clearFields();
-            clearTable();
+            clearProductFields();
+            clearProductTable();
             listarFueraStock(productView.prodcttbl);
         }
+
         if (e.getSource() == productView.listarProductbtn) {
             readProductos(productView.prodcttbl);
-            clearFields();
-            clearTable();
+            clearProductFields();
+            clearProductTable();
             readProductos(productView.prodcttbl);
         }
 
-        //Acciones de Customer
+        //////////////      Acciones de Customer       /////////////
         if (e.getSource() == customerView.deleteCustomerbtn) {
-            deleteCustomer();
+            String pass = JOptionPane.showInputDialog("Digite la password de administrador");
+
+            if (pass.equals(password)) {
+                deleteCustomer();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No cumple con los requisitos");
+            }
+
         }
+
         if (e.getSource() == customerView.saveCustomerbtn) {
-            createCustomer();
+            String pass = JOptionPane.showInputDialog("Digite la password de administrador");
+
+            if (pass.equals(password)) {
+                createCustomer();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No cumple con los requisitos");
+            }
         }
+
+        if (e.getSource() == customerView.updateCustomerbtn) {
+            String pass = JOptionPane.showInputDialog("Digite la password de administrador");
+
+            if (pass.equals(password)) {
+                printingInFieldsCustomer();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No cumple con los requisitos");
+            }
+        }
+
         if (e.getSource() == customerView.okCustomerbtn) {
             updateCustomer();
+            clearCustomerFields();
+            clearCustomerTable();
+            readCustomers(customerView.customertbl);
         }
-        if (e.getSource() == customerView.updateCustomerbtn) {
 
-        }
         if (e.getSource() == customerView.readCustomerbtn) {
-            readCustomer(customerView.customertbl);
-            clearFields();
-            clearTable();
-            readCustomer(customerView.customertbl);
+            readCustomers(customerView.customertbl);
+            clearCustomerTable();
+            clearCustomerFields();
+            readCustomers(customerView.customertbl);
         }
-        //Acciones de Seller
+
+        //////////////      Acciones de Seller       /////////////
         if (e.getSource() == sellerView.sellerdeletebtn) {
 
+            String pass = JOptionPane.showInputDialog("Digite la password de administrador");
+
+            if (pass.equals(password)) {
+                deleteSeller();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No cumple con los requisitos");
+            }
+
         }
+
         if (e.getSource() == sellerView.sellerlistbtn) {
             readSeller(sellerView.sellertbl);
-            clearFields();
-            clearTable();
+            clearSellerFields();
+            clearSellerTable();
             readSeller(sellerView.sellertbl);
         }
-        if (e.getSource() == sellerView.sellerokbtn) {
 
+        if (e.getSource() == sellerView.sellersavebtn) {
+            String pass = JOptionPane.showInputDialog("Digite la password de administrador");
+
+            if (pass.equals(password)) {
+                createSeller();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No cumple con los requisitos");
+            }
         }
+
         if (e.getSource() == sellerView.sellerupdatebtn) {
 
-        }
-        if (e.getSource() == sellerView.sellersavebtn) {
+            String pass = JOptionPane.showInputDialog("Digite la password de administrador");
 
+            if (pass.equals(password)) {
+                printingInFieldsSeller();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No cumple con los requisitos");
+            }
         }
+
+        if (e.getSource() == sellerView.sellerokbtn) {
+            updateSeller();
+            clearSellerFields();
+            clearSellerTable();
+            readSeller(sellerView.sellertbl);
+        }
+
+        //////////////      Acciones de sell       /////////////
+        if (e.getSource() == sellView.searchProductbtn) {
+            seachProduct();
+        }
+        if (e.getSource() == sellView.saveSellbtn) {
+            addProductOnTable(sellView.sellViewtbl);
+        }
+        if (e.getSource() == sellView.deleteSellbtn) {
+            deleteProductOnTable(sellView.sellViewtbl);
+        }
+        if (e.getSource() == sellView.searchcustomerbtn) {
+            searchCustomer();
+        }
+        if (e.getSource() == sellView.printcheckbtn) {
+            makePurchase();
+        }
+
+    }
+
+    //SaleDetailsMethods
+    public void seachProduct() {
+        int value = Integer.parseInt(sellView.productidtxt.getText());
+        productM = saleDetailsDAO.searchProduct(value);
+        sellView.productNametxt.setText(productM.getName_product());
+        sellView.productPricetxt.setText(String.valueOf(productM.getPrice_product()));
+        sellView.productStocktxt.setText(String.valueOf(productM.getStock_product()));
+        sellView.sellQuantitytxt.requestFocus();
+    }
+
+    public void addProductOnTable(JTable table) {
+
+        if (!sellView.sellQuantitytxt.equals("") && sellView.productStocktxt.getText().equals("true")) {
+
+            Integer id = Integer.parseInt(sellView.productidtxt.getText());
+            String name = sellView.productNametxt.getText();
+            Integer quantity = Integer.parseInt(sellView.sellQuantitytxt.getText());
+            Integer price = Integer.parseInt(sellView.productPricetxt.getText());
+            Integer total = price * quantity;
+            item = item + 1;
+            modelSale = (DefaultTableModel) table.getModel();
+            for (int i = 0; i < sellView.sellViewtbl.getRowCount(); i++) {
+                if (sellView.sellViewtbl.getValueAt(i, 0).equals(sellView.productidtxt.getText())) {
+                    System.out.println("El producto ya esta registrado");
+                    return;
+                }
+            }
+            ArrayList list = new ArrayList();
+            list.add(item);
+            list.add(id);
+            list.add(name);
+            list.add(quantity);
+            list.add(price);
+            list.add(total);
+            Object[] row = new Object[5];
+            row[0] = list.get(1);
+            row[1] = list.get(2);
+            row[2] = list.get(3);
+            row[3] = list.get(4);
+            row[4] = list.get(5);
+            modelSale.addRow(row);
+            sellView.sellViewtbl.setModel(modelSale);
+            totalAmount();
+            clearSellView();
+            sellView.productidtxt.requestFocus();
+        } else {
+            System.out.println("Verifique si la cantidad es mayor a 0 o si el producto tenga stock en almacen");
+        }
+
+    }
+
+    public void totalAmount() {
+        int numRow = sellView.sellViewtbl.getRowCount();
+        totalPagar = 0;
+        for (int i = 0; i < numRow; i++) {
+            int cal = Integer.parseInt(String.valueOf(sellView.sellViewtbl.getValueAt(i, 4)));
+            totalPagar = totalPagar + cal;
+            sellView.totalamounttxt.setText("" + totalPagar);
+        }
+        if (sellView.sellViewtbl.getRowCount() == 0) {
+            sellView.totalamounttxt.setText("");
+        }
+    }
+
+    public void deleteProductOnTable(JTable table) {
+
+        modelSale = (DefaultTableModel) table.getModel();
+        modelSale.removeRow(sellView.sellViewtbl.getSelectedRow());
+        sellView.sellViewtbl.setModel(modelSale);
+        totalAmount();
+        sellView.productidtxt.requestFocus();
+
+    }
+
+    public void clearSellView() {
+        sellView.productNametxt.setText("");
+        sellView.productPricetxt.setText("");
+        sellView.productStocktxt.setText("");
+        sellView.productidtxt.setText("");
+        sellView.sellQuantitytxt.setText("");
+    }
+
+    public void searchCustomer() {
+
+        int value = Integer.parseInt(sellView.idcustomertxt.getText());
+        customerM = saleDetailsDAO.searchCustomer(value);
+        sellView.namecustomertxt.setText(customerM.getName_customer());
+
+    }
+
+    public void checkDetails() {
+        for (int i = 0; i < sellView.sellViewtbl.getRowCount(); i++) {
+            int id_sale = saleDAO.idSale();
+            saleDetailsM.setId_sale(id_sale);
+            saleDetailsM.setId_product(Integer.valueOf((String) sellView.sellViewtbl.getValueAt(i, 0)));
+            saleDetailsM.setQuantity(Integer.valueOf((String) sellView.sellViewtbl.getValueAt(i, 2)));
+            saleDetailsM.setTotal(Double.parseDouble((String) sellView.sellViewtbl.getValueAt(i, 4)));
+            int result = saleDetailsDAO.checkDetails(saleDetailsM);
+        }
+    }
+
+    //SaleMethods
+    public void makePurchase() {
+        saleM.setId_seller(Integer.valueOf(sellView.selleridtxt.getText()));
+        saleM.setId_customer(Integer.valueOf(sellView.idcustomertxt.getText()));
+        saleM.setSell_number(sellView.salenumbertxt.getText());
+        saleM.setTotal(Double.valueOf(sellView.totalamounttxt.getText()));
+        int result = saleDAO.checkPurchase(saleM);
 
     }
 
@@ -343,7 +570,6 @@ public class ControlMenu implements ActionListener, java.awt.event.KeyListener {
         productView.prodcttbl.setModel(modelProduct);
     }
 
-    //Printin values on productJTable
     public void printingInFieldsProduct() {
         int fila = productView.prodcttbl.getSelectedRow();
         if (fila == -1) {
@@ -369,7 +595,7 @@ public class ControlMenu implements ActionListener, java.awt.event.KeyListener {
         customerM.setDni_customer(customerView.dniCustomertxt.getText());
         customerM.setName_customer(customerView.nameCustomertxt.getText());
         customerM.setAddress_customer(customerView.addressCustomertxt.getText());
-        customerM.setStatus_customer(Integer.parseInt(customerView.statusCustomertxt.getText()));
+        customerM.setStatus_customer(Integer.valueOf(customerView.statusCustomertxt.getText()));
         int result = customerDAO.createCustomer(customerM);
         if (result > 0) {
             System.out.println("agregado con exito");
@@ -378,7 +604,7 @@ public class ControlMenu implements ActionListener, java.awt.event.KeyListener {
         }
     }
 
-    public void readCustomer(JTable tabla) {
+    public void readCustomers(JTable tabla) {
 
         modelCustomer = (DefaultTableModel) tabla.getModel();
         List<Customer> list = customerDAO.readCustomer();
@@ -428,7 +654,14 @@ public class ControlMenu implements ActionListener, java.awt.event.KeyListener {
         if (fila == -1) {
             System.out.println("choose");
         } else {
-
+            String dni = (String) customerView.customertbl.getValueAt(fila, 1);
+            String name = (String) customerView.customertbl.getValueAt(fila, 2);
+            String address = (String) customerView.customertbl.getValueAt(fila, 3);
+            Integer status = (Integer) customerView.customertbl.getValueAt(fila, 4);
+            customerView.statusCustomertxt.setText(String.valueOf(status));
+            customerView.addressCustomertxt.setText(address);
+            customerView.dniCustomertxt.setText(dni);
+            customerView.nameCustomertxt.setText(name);
         }
     }
 
@@ -460,7 +693,7 @@ public class ControlMenu implements ActionListener, java.awt.event.KeyListener {
             modelSeller.addRow(row);
         }
 
-        sellerView.sellertbl.setModel(modelProduct);
+        sellerView.sellertbl.setModel(modelSeller);
 
     }
 
@@ -487,9 +720,18 @@ public class ControlMenu implements ActionListener, java.awt.event.KeyListener {
             System.out.println("error");
         }
     }
+    
+    public void printingInFieldsSeller(){
+        int row = sellerView.sellertbl.getSelectedRow();
+        if(row == -1){
+            System.out.println("choose row");
+        }else{
+            
+        }
+    }
 
-    //Clearing data from panel
-    public void clearTable() {
+    //Clearing data from productPanel
+    public void clearProductTable() {
 
         for (int i = 0; i < productView.prodcttbl.getRowCount(); i++) {
             modelProduct.removeRow(i);
@@ -498,12 +740,45 @@ public class ControlMenu implements ActionListener, java.awt.event.KeyListener {
         productView.prodcttbl.setModel(modelProduct);
     }
 
-    public void clearFields() {
+    public void clearProductFields() {
         productView.categorytxt.setText("");
         productView.idtxt.setText("");
         productView.nametxt.setText("");
         productView.pricetxt.setText("");
         productView.stocktxt.setText("");
+    }
+
+    //Clearing data from customerPanel
+    public void clearCustomerTable() {
+        for (int i = 0; i < customerView.customertbl.getRowCount(); i++) {
+            modelCustomer.removeRow(i);
+            i--;
+        }
+        customerView.customertbl.setModel(modelCustomer);
+    }
+
+    public void clearCustomerFields() {
+        customerView.addressCustomertxt.setText("");
+        customerView.dniCustomertxt.setText("");
+        customerView.nameCustomertxt.setText("");
+        customerView.statusCustomertxt.setText("");
+    }
+
+    //Clearing data from sellerPanel
+    public void clearSellerTable() {
+        for (int i = 0; i < sellerView.sellertbl.getRowCount(); i++) {
+            modelSeller.removeRow(i);
+            i--;
+        }
+        sellerView.sellertbl.setModel(modelSeller);
+    }
+
+    public void clearSellerFields() {
+        sellerView.sellerdnitxt.setText("");
+        sellerView.selleridtxt.setText("");
+        sellerView.sellernametxt.setText("");
+        sellerView.sellerphonetxt.setText("");
+        sellerView.sellerstatustxt.setText("");
     }
 
     //LoginMethods
@@ -518,40 +793,6 @@ public class ControlMenu implements ActionListener, java.awt.event.KeyListener {
 
     public void logout() {
         System.exit(0);
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (!"".equals(sellView.productidtxt.getText())) {
-                Integer cod = Integer.parseInt(sellView.productidtxt.getText());
-                productM = productDAO.searchProduct(cod);
-                if (productM.getName_product() != null) {
-                    sellView.productNametxt.setText(productM.getName_product());
-                    sellView.productPricetxt.setText(String.valueOf(productM.getPrice_product()));
-                    sellView.productStocktxt.setText(String.valueOf(productM.getStock_product()));
-                    sellView.sellQuantitytxt.requestFocus();
-                } else {
-                    sellView.productNametxt.setText("");
-                    sellView.productPricetxt.setText("");
-                    sellView.productStocktxt.setText("");
-                    sellView.sellQuantitytxt.requestFocus();
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Type the product ID");
-                sellView.productidtxt.requestFocus();
-            }
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

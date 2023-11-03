@@ -49,13 +49,13 @@ public class SellerDAO {
                 ResultSet rs = pst.executeQuery()){
             
             while(rs.next()){
-                Seller sealer = new Seller();
-                sealer.setId_sealer(rs.getInt(1));
-                sealer.setDni_sealer(rs.getString(2));
-                sealer.setName_sealer(rs.getString(3));
-                sealer.setNumber_sealer(rs.getString(4));
-                sealer.setStatus_sealer(rs.getInt(5));
-                list.add(sealer);
+                Seller seller = new Seller();
+                seller.setId_sealer(rs.getInt("id_vendedor"));
+                seller.setDni_sealer(rs.getString("dni_vendedor"));
+                seller.setName_sealer(rs.getString("nombre_vendedor"));
+                seller.setNumber_sealer(rs.getString("telefono_vendedor"));
+                seller.setStatus_sealer(rs.getInt("estado_vendedor"));
+                list.add(seller);
             }
                     
         }catch(SQLException s){

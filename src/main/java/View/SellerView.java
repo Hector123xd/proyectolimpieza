@@ -111,25 +111,35 @@ public class SellerView extends javax.swing.JFrame {
         jSeparator5.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator5.setForeground(new java.awt.Color(204, 204, 204));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\user-id-icon_30x30.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user-id-icon_30x30.png"))); // NOI18N
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\user_icon_30x30.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user_icon_30x30.png"))); // NOI18N
 
-        jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\estadoproductoicon 30x30.png")); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estadoproductoicon 30x30.png"))); // NOI18N
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\idicon30x30.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/idicon30x30.png"))); // NOI18N
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\phoneicon30x30png.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/phoneicon30x30png.png"))); // NOI18N
 
-        sellersavebtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\saveicon30x30.png")); // NOI18N
+        sellersavebtn.setBackground(new java.awt.Color(51, 51, 51));
+        sellersavebtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/saveicon30x30.png"))); // NOI18N
+        sellersavebtn.setBorder(null);
 
-        sellerupdatebtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\refreshcion30x30.png")); // NOI18N
+        sellerupdatebtn.setBackground(new java.awt.Color(51, 51, 51));
+        sellerupdatebtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refreshcion30x30.png"))); // NOI18N
+        sellerupdatebtn.setBorder(null);
 
-        sellerokbtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\checkicon30x30.png")); // NOI18N
+        sellerokbtn.setBackground(new java.awt.Color(51, 51, 51));
+        sellerokbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkicon30x30.png"))); // NOI18N
+        sellerokbtn.setBorder(null);
 
-        sellerdeletebtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\trashcanicon30x30.png")); // NOI18N
+        sellerdeletebtn.setBackground(new java.awt.Color(51, 51, 51));
+        sellerdeletebtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/trashcanicon30x30.png"))); // NOI18N
+        sellerdeletebtn.setBorder(null);
 
-        sellerlistbtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\hecto\\Desktop\\imagesProject\\listar30x30.png")); // NOI18N
+        sellerlistbtn.setBackground(new java.awt.Color(51, 51, 51));
+        sellerlistbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/listar30x30.png"))); // NOI18N
+        sellerlistbtn.setBorder(null);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -140,17 +150,17 @@ public class SellerView extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addComponent(sellersavebtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel12))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                            .addComponent(jLabel12))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
                         .addComponent(sellerupdatebtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sellerokbtn)
@@ -172,14 +182,14 @@ public class SellerView extends javax.swing.JFrame {
                                     .addComponent(selleridtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(sellerphonetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 16, Short.MAX_VALUE)))
+                        .addGap(0, 19, Short.MAX_VALUE)))
                 .addGap(22, 22, 22))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(sellernametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(79, 79, 79)
@@ -244,7 +254,7 @@ public class SellerView extends javax.swing.JFrame {
                             .addComponent(sellerokbtn)
                             .addComponent(sellerdeletebtn, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addComponent(sellerlistbtn))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 560));
@@ -254,10 +264,7 @@ public class SellerView extends javax.swing.JFrame {
         sellertbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         sellertbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "DNI", "Name", "Phone", "Status"
