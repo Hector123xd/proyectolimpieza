@@ -52,25 +52,36 @@ public class SellerView extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("ID");
 
         jLabel8.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("DNI");
 
         jLabel9.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Phone");
 
         jLabel10.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Name");
 
         jLabel11.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Status");
 
         sellerphonetxt.setBackground(new java.awt.Color(51, 51, 51));
+        sellerphonetxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        sellerphonetxt.setForeground(new java.awt.Color(255, 255, 255));
         sellerphonetxt.setBorder(null);
+        sellerphonetxt.setCaretColor(new java.awt.Color(255, 255, 255));
 
         selleridtxt.setBackground(new java.awt.Color(51, 51, 51));
+        selleridtxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        selleridtxt.setForeground(new java.awt.Color(255, 255, 255));
         selleridtxt.setBorder(null);
+        selleridtxt.setCaretColor(new java.awt.Color(255, 255, 255));
         selleridtxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selleridtxtActionPerformed(evt);
@@ -81,7 +92,10 @@ public class SellerView extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
 
         sellernametxt.setBackground(new java.awt.Color(51, 51, 51));
+        sellernametxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        sellernametxt.setForeground(new java.awt.Color(255, 255, 255));
         sellernametxt.setBorder(null);
+        sellernametxt.setCaretColor(new java.awt.Color(255, 255, 255));
         sellernametxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sellernametxtActionPerformed(evt);
@@ -92,7 +106,10 @@ public class SellerView extends javax.swing.JFrame {
         jSeparator2.setForeground(new java.awt.Color(204, 204, 204));
 
         sellerdnitxt.setBackground(new java.awt.Color(51, 51, 51));
+        sellerdnitxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        sellerdnitxt.setForeground(new java.awt.Color(255, 255, 255));
         sellerdnitxt.setBorder(null);
+        sellerdnitxt.setCaretColor(new java.awt.Color(255, 255, 255));
         sellerdnitxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sellerdnitxtActionPerformed(evt);
@@ -106,7 +123,10 @@ public class SellerView extends javax.swing.JFrame {
         jSeparator4.setForeground(new java.awt.Color(204, 204, 204));
 
         sellerstatustxt.setBackground(new java.awt.Color(51, 51, 51));
+        sellerstatustxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        sellerstatustxt.setForeground(new java.awt.Color(255, 255, 255));
         sellerstatustxt.setBorder(null);
+        sellerstatustxt.setCaretColor(new java.awt.Color(255, 255, 255));
 
         jSeparator5.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator5.setForeground(new java.awt.Color(204, 204, 204));

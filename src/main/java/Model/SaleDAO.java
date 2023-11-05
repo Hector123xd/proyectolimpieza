@@ -13,7 +13,7 @@ public class SaleDAO {
 
     MySQLConnection con = new MySQLConnection();
 
-    public int checkPurchase(Sale sale) {
+    public int checkSalePuchase(Sale sale) {
 
         final String query = "INSERT INTO ventas (id_vendedor,id_customer,numero_venta,monto_venta) VALUES (?,?,?,?)";
         try (Connection c = con.getConnection(); PreparedStatement pst = c.prepareStatement(query)) {
@@ -39,19 +39,20 @@ public class SaleDAO {
     public int idSale() {
 
         int id = 0;
-        final String query = "SELECT MAX(id_ventas) FROM ventas;";
+        final String query = "SELECT MAX(id_venta) FROM ventas;";
         
         try(Connection c = con.getConnection();
                 PreparedStatement pst = c.prepareStatement(query);
                 ResultSet rs = pst.executeQuery()){
             
             if(rs.next()){
-                id = rs.getInt("id_venta");
+                id = rs.getInt(1);
             }
             
         }catch(SQLException s){
             System.out.println(s);
         }
+        
         return id;
     }
 

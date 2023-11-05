@@ -70,7 +70,7 @@ public class SaleDetailsDAO {
        return customer;
    }
    
-   public int checkDetails(SaleDetails details){
+   public int checkSaleDetailsPurchase(SaleDetails details){
        
        final String query = "INSERT INTO detalle_venta (id_venta,id_producto,cantidad_detalle_venta,precio_total) VALUES (?,?,?,?);";
        try(Connection c = con.getConnection();

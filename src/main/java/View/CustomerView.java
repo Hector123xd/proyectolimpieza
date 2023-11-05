@@ -50,35 +50,51 @@ public class CustomerView extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Name");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 70, 30));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Status");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 100, 30));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Address");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 100, 30));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("DNI");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 40, 30));
 
         dniCustomertxt.setBackground(new java.awt.Color(51, 51, 51));
+        dniCustomertxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        dniCustomertxt.setForeground(new java.awt.Color(255, 255, 255));
         dniCustomertxt.setBorder(null);
+        dniCustomertxt.setCaretColor(new java.awt.Color(255, 255, 255));
         jPanel2.add(dniCustomertxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 180, 30));
 
         nameCustomertxt.setBackground(new java.awt.Color(51, 51, 51));
+        nameCustomertxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nameCustomertxt.setForeground(new java.awt.Color(255, 255, 255));
         nameCustomertxt.setBorder(null);
+        nameCustomertxt.setCaretColor(new java.awt.Color(255, 255, 255));
         jPanel2.add(nameCustomertxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 180, 30));
 
         statusCustomertxt.setBackground(new java.awt.Color(51, 51, 51));
+        statusCustomertxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        statusCustomertxt.setForeground(new java.awt.Color(255, 255, 255));
         statusCustomertxt.setBorder(null);
+        statusCustomertxt.setCaretColor(new java.awt.Color(255, 255, 255));
         jPanel2.add(statusCustomertxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 180, 30));
 
         addressCustomertxt.setBackground(new java.awt.Color(51, 51, 51));
+        addressCustomertxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        addressCustomertxt.setForeground(new java.awt.Color(255, 255, 255));
         addressCustomertxt.setBorder(null);
+        addressCustomertxt.setCaretColor(new java.awt.Color(255, 255, 255));
         jPanel2.add(addressCustomertxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 180, 30));
 
         jSeparator1.setBackground(new java.awt.Color(153, 153, 153));

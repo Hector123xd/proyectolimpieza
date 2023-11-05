@@ -68,11 +68,13 @@ public class ProductDAO {
 
     public int updateProduct(Product product) {
 
-        final String query = "UPDATE producto SET stock_producto = ? WHERE id_producto = ?;";
+        final String query = "UPDATE producto SET nombre_producto = ? ,precio_producto = ?,stock_producto = ? WHERE id_producto = ?;";
         try (Connection c = con.getConnection(); PreparedStatement pst = c.prepareStatement(query)) {
 
-            pst.setBoolean(1, product.getStock_product());
-            pst.setInt(2, product.getId_product());
+            pst.setString(1, product.getName_product());
+            pst.setInt(2, product.getPrice_product());
+            pst.setBoolean(3, product.getStock_product());
+            pst.setInt(4, product.getId_product());
 
             int result = pst.executeUpdate();
             if (result > 0) {

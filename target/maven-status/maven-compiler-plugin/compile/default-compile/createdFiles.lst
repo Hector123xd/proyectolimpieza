@@ -47,7 +47,9 @@ View\ProductView$4.class
 View\ProductView$7.class
 View\SellView$1.class
 View\SellView$4.class
+ExcelP\Report.class
 Model\Customer.class
 Model\User.class
+ExcelP\Excel.class
 View\SellView$8.class
 View\SellView.class

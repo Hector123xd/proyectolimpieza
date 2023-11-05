@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,6 +37,8 @@ public class UserDAO {
                     getLoginInformation(id);
                     
                     result = true;
+                }else{
+                    JOptionPane.showMessageDialog(null, "wrong username or password please try again");
                 }
                 
             }catch(SQLException s){
@@ -61,9 +64,8 @@ public class UserDAO {
             
             if(result > 0){
                 
-                System.out.println("done");
             }else{
-                System.out.println("error found");
+                
             }
             
         }catch(SQLException s){

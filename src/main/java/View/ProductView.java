@@ -18,6 +18,7 @@ public class ProductView extends javax.swing.JFrame {
         productsStockbtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         prodcttbl = new javax.swing.JTable();
+        excelbtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         idtxt = new javax.swing.JTextField();
@@ -102,6 +103,13 @@ public class ProductView extends javax.swing.JFrame {
             prodcttbl.getColumnModel().getColumn(4).setMaxWidth(80);
         }
 
+        excelbtn.setBackground(new java.awt.Color(255, 255, 255));
+        excelbtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        excelbtn.setForeground(new java.awt.Color(0, 0, 0));
+        excelbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/excelicon30x30.png"))); // NOI18N
+        excelbtn.setText("Import Excel");
+        excelbtn.setBorder(null);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -109,7 +117,10 @@ public class ProductView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(productsStockbtn)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(productsStockbtn)
+                        .addGap(62, 62, 62)
+                        .addComponent(excelbtn))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 742, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
@@ -117,7 +128,9 @@ public class ProductView extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(productsStockbtn)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(productsStockbtn)
+                    .addComponent(excelbtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1)
                 .addGap(20, 20, 20))
@@ -130,10 +143,12 @@ public class ProductView extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("ID");
 
+        idtxt.setEditable(false);
         idtxt.setBackground(new java.awt.Color(51, 51, 51));
-        idtxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        idtxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         idtxt.setForeground(new java.awt.Color(255, 255, 255));
         idtxt.setBorder(null);
+        idtxt.setCaretColor(new java.awt.Color(255, 255, 255));
         idtxt.setEnabled(false);
         idtxt.setFocusable(false);
         idtxt.setOpaque(true);
@@ -149,9 +164,10 @@ public class ProductView extends javax.swing.JFrame {
         jLabel2.setText("Name");
 
         nametxt.setBackground(new java.awt.Color(51, 51, 51));
-        nametxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        nametxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         nametxt.setForeground(new java.awt.Color(255, 255, 255));
         nametxt.setBorder(null);
+        nametxt.setCaretColor(new java.awt.Color(255, 255, 255));
         nametxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nametxtActionPerformed(evt);
@@ -163,27 +179,30 @@ public class ProductView extends javax.swing.JFrame {
         jLabel3.setText("Price");
 
         pricetxt.setBackground(new java.awt.Color(51, 51, 51));
-        pricetxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        pricetxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         pricetxt.setForeground(new java.awt.Color(255, 255, 255));
         pricetxt.setBorder(null);
+        pricetxt.setCaretColor(new java.awt.Color(255, 255, 255));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setText("Category");
 
         categorytxt.setBackground(new java.awt.Color(51, 51, 51));
-        categorytxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        categorytxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         categorytxt.setForeground(new java.awt.Color(255, 255, 255));
         categorytxt.setBorder(null);
+        categorytxt.setCaretColor(new java.awt.Color(255, 255, 255));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 204, 204));
         jLabel5.setText("Stock ");
 
         stocktxt.setBackground(new java.awt.Color(51, 51, 51));
-        stocktxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        stocktxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         stocktxt.setForeground(new java.awt.Color(255, 255, 255));
         stocktxt.setBorder(null);
+        stocktxt.setCaretColor(new java.awt.Color(255, 255, 255));
 
         jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
 
@@ -406,6 +425,7 @@ public class ProductView extends javax.swing.JFrame {
     public javax.swing.JButton agregarProductobtn;
     public javax.swing.JTextField categorytxt;
     public javax.swing.JButton eliminarProductobtn;
+    public javax.swing.JButton excelbtn;
     public javax.swing.JTextField idtxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

@@ -1,5 +1,6 @@
 package Control;
 
+import ExcelP.Report;
 import Model.Customer;
 import Model.CustomerDAO;
 import Model.Product;
@@ -33,6 +34,7 @@ import javax.swing.table.DefaultTableModel;
  * @author hecto
  */
 public class ControlMenu implements ActionListener {
+    
 
     //MenuFrame
     Menu menuView = new Menu();
@@ -77,6 +79,9 @@ public class ControlMenu implements ActionListener {
 
     //SettingFrame
     SettingsView settingsView = new SettingsView();
+    
+    //ExcelReport
+    Report excel = new Report(); 
 
     Runnable runnable = new Runnable() {
         @Override
@@ -116,6 +121,7 @@ public class ControlMenu implements ActionListener {
         this.productView.agregarProductobtn.addActionListener(this);
         this.productView.eliminarProductobtn.addActionListener(this);
         this.productView.listarProductbtn.addActionListener(this);
+        this.productView.excelbtn.addActionListener(this);
         //CustomerView
         this.customerView.deleteCustomerbtn.addActionListener(this);
         this.customerView.updateCustomerbtn.addActionListener(this);
@@ -179,6 +185,8 @@ public class ControlMenu implements ActionListener {
         Thread thread = new Thread(runnable);
         thread.start();
     }
+    
+    ///////////////     LIST OF ALL EVENTS      /////////////////
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -215,38 +223,41 @@ public class ControlMenu implements ActionListener {
             showSells();
         }
 
-        //////////////      Acciones de Producto       /////////////
+        //////////////      Product events       /////////////
         if (e.getSource() == productView.actualizarProductobtn) {
-            String pass = JOptionPane.showInputDialog("Digite la password de administrador");
+            String pass = JOptionPane.showInputDialog("Type admin password: ");
 
             if (pass.equals(password)) {
                 printingInFieldsProduct();
-
             } else {
-                JOptionPane.showMessageDialog(null, "No cumple con los requisitos");
+                JOptionPane.showMessageDialog(null, "You have no permission");
             }
 
         }
 
         if (e.getSource() == productView.agregarProductobtn) {
-            String pass = JOptionPane.showInputDialog("Digite la password de administrador");
+            String pass = JOptionPane.showInputDialog("Type admin password: ");
 
             if (pass.equals(password)) {
                 createProducto();
-
+                clearProductFields();
+                clearProductTable();
+                readProductos(productView.prodcttbl);
             } else {
-                JOptionPane.showMessageDialog(null, "No cumple con los requisitos");
+                JOptionPane.showMessageDialog(null, "You have no permission");
             }
         }
 
         if (e.getSource() == productView.eliminarProductobtn) {
-            String pass = JOptionPane.showInputDialog("Digite la password de administrador");
+            String pass = JOptionPane.showInputDialog("Type admin password: ");
 
             if (pass.equals(password)) {
                 deleteProduct();
-
+                clearProductFields();
+                clearProductTable();
+                readProductos(productView.prodcttbl);
             } else {
-                JOptionPane.showMessageDialog(null, "No cumple con los requisitos");
+                JOptionPane.showMessageDialog(null, "You have no permission");
             }
         }
 
@@ -270,39 +281,48 @@ public class ControlMenu implements ActionListener {
             clearProductTable();
             readProductos(productView.prodcttbl);
         }
+        
+        if(e.getSource() == productView.excelbtn){
+            excel.report();
+        }
+        
 
-        //////////////      Acciones de Customer       /////////////
+        //////////////      Customer events       /////////////
         if (e.getSource() == customerView.deleteCustomerbtn) {
-            String pass = JOptionPane.showInputDialog("Digite la password de administrador");
+            String pass = JOptionPane.showInputDialog("Type admin password: ");
 
             if (pass.equals(password)) {
                 deleteCustomer();
-
+                clearCustomerFields();
+                clearCustomerTable();
+                readCustomers(customerView.customertbl);
             } else {
-                JOptionPane.showMessageDialog(null, "No cumple con los requisitos");
+                JOptionPane.showMessageDialog(null, "You have no permission");
             }
 
         }
 
         if (e.getSource() == customerView.saveCustomerbtn) {
-            String pass = JOptionPane.showInputDialog("Digite la password de administrador");
+            String pass = JOptionPane.showInputDialog("Type admin password: ");
 
             if (pass.equals(password)) {
                 createCustomer();
-
+                clearCustomerFields();
+                clearCustomerTable();
+                readCustomers(customerView.customertbl);
             } else {
-                JOptionPane.showMessageDialog(null, "No cumple con los requisitos");
+                JOptionPane.showMessageDialog(null, "You have no permission");
             }
         }
 
         if (e.getSource() == customerView.updateCustomerbtn) {
-            String pass = JOptionPane.showInputDialog("Digite la password de administrador");
+            String pass = JOptionPane.showInputDialog("Type admin password: ");
 
             if (pass.equals(password)) {
                 printingInFieldsCustomer();
 
             } else {
-                JOptionPane.showMessageDialog(null, "No cumple con los requisitos");
+                JOptionPane.showMessageDialog(null, "You have no permission");
             }
         }
 
@@ -320,18 +340,34 @@ public class ControlMenu implements ActionListener {
             readCustomers(customerView.customertbl);
         }
 
-        //////////////      Acciones de Seller       /////////////
+        //////////////      Seller events       /////////////
         if (e.getSource() == sellerView.sellerdeletebtn) {
 
-            String pass = JOptionPane.showInputDialog("Digite la password de administrador");
+            String pass = JOptionPane.showInputDialog("Type admin password: ");
 
             if (pass.equals(password)) {
                 deleteSeller();
+                clearSellerFields();
+                clearSellerTable();
+                readSeller(sellerView.sellertbl);
 
             } else {
-                JOptionPane.showMessageDialog(null, "No cumple con los requisitos");
+                JOptionPane.showMessageDialog(null, "You have no permission");
             }
 
+        }
+        
+        if (e.getSource() == sellerView.sellersavebtn) {
+            String pass = JOptionPane.showInputDialog("Type admin password: ");
+
+            if (pass.equals(password)) {
+                createSeller();
+                clearSellerFields();
+                clearSellerTable();
+                readSeller(sellerView.sellertbl);
+            } else {
+                JOptionPane.showMessageDialog(null, "You have no permission");
+            }
         }
 
         if (e.getSource() == sellerView.sellerlistbtn) {
@@ -341,26 +377,15 @@ public class ControlMenu implements ActionListener {
             readSeller(sellerView.sellertbl);
         }
 
-        if (e.getSource() == sellerView.sellersavebtn) {
-            String pass = JOptionPane.showInputDialog("Digite la password de administrador");
-
-            if (pass.equals(password)) {
-                createSeller();
-
-            } else {
-                JOptionPane.showMessageDialog(null, "No cumple con los requisitos");
-            }
-        }
-
         if (e.getSource() == sellerView.sellerupdatebtn) {
 
-            String pass = JOptionPane.showInputDialog("Digite la password de administrador");
+            String pass = JOptionPane.showInputDialog("Type admin password: ");
 
             if (pass.equals(password)) {
                 printingInFieldsSeller();
 
             } else {
-                JOptionPane.showMessageDialog(null, "No cumple con los requisitos");
+                JOptionPane.showMessageDialog(null, "You have no permission");
             }
         }
 
@@ -371,38 +396,66 @@ public class ControlMenu implements ActionListener {
             readSeller(sellerView.sellertbl);
         }
 
-        //////////////      Acciones de sell       /////////////
+        //////////////      Sell events       /////////////
         if (e.getSource() == sellView.searchProductbtn) {
             seachProduct();
         }
+        
         if (e.getSource() == sellView.saveSellbtn) {
             addProductOnTable(sellView.sellViewtbl);
         }
+        
         if (e.getSource() == sellView.deleteSellbtn) {
             deleteProductOnTable(sellView.sellViewtbl);
         }
+        
         if (e.getSource() == sellView.searchcustomerbtn) {
             searchCustomer();
         }
+        
         if (e.getSource() == sellView.printcheckbtn) {
             makePurchase();
+            makeDetailsPurchase();
         }
 
     }
 
+    //////////////      LIST OF ALL METHODS         ///////////////
+    
     //SaleDetailsMethods
     public void seachProduct() {
-        int value = Integer.parseInt(sellView.productidtxt.getText());
-        productM = saleDetailsDAO.searchProduct(value);
-        sellView.productNametxt.setText(productM.getName_product());
-        sellView.productPricetxt.setText(String.valueOf(productM.getPrice_product()));
-        sellView.productStocktxt.setText(String.valueOf(productM.getStock_product()));
-        sellView.sellQuantitytxt.requestFocus();
+
+        if (sellView.productidtxt.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Type the ID product");
+            sellView.productidtxt.requestFocus();
+        } else {
+            int value = Integer.parseInt(sellView.productidtxt.getText());
+            productM = saleDetailsDAO.searchProduct(value);
+            sellView.productNametxt.setText(productM.getName_product());
+            sellView.productPricetxt.setText(String.valueOf(productM.getPrice_product()));
+            sellView.productStocktxt.setText(String.valueOf(productM.getStock_product()));
+            sellView.sellQuantitytxt.requestFocus();
+        }
+
+    }
+
+    public void searchCustomer() {
+
+        if (sellView.idcustomertxt.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Type the ID customer");
+            sellView.idcustomertxt.requestFocus();
+        } else {
+            int value = Integer.parseInt(sellView.idcustomertxt.getText());
+            customerM = saleDetailsDAO.searchCustomer(value);
+            sellView.namecustomertxt.setText(customerM.getName_customer());
+            sellView.selleridtxt.requestFocus();
+        }
+
     }
 
     public void addProductOnTable(JTable table) {
 
-        if (!sellView.sellQuantitytxt.equals("") && sellView.productStocktxt.getText().equals("true")) {
+        if (!sellView.sellQuantitytxt.getText().equals("") && sellView.productStocktxt.getText().equals("true")) {
 
             Integer id = Integer.parseInt(sellView.productidtxt.getText());
             String name = sellView.productNametxt.getText();
@@ -464,41 +517,44 @@ public class ControlMenu implements ActionListener {
 
     }
 
-    public void clearSellView() {
-        sellView.productNametxt.setText("");
-        sellView.productPricetxt.setText("");
-        sellView.productStocktxt.setText("");
-        sellView.productidtxt.setText("");
-        sellView.sellQuantitytxt.setText("");
-    }
-
-    public void searchCustomer() {
-
-        int value = Integer.parseInt(sellView.idcustomertxt.getText());
-        customerM = saleDetailsDAO.searchCustomer(value);
-        sellView.namecustomertxt.setText(customerM.getName_customer());
-
-    }
-
-    public void checkDetails() {
+    public void makeDetailsPurchase() {
         for (int i = 0; i < sellView.sellViewtbl.getRowCount(); i++) {
             int id_sale = saleDAO.idSale();
             saleDetailsM.setId_sale(id_sale);
-            saleDetailsM.setId_product(Integer.valueOf((String) sellView.sellViewtbl.getValueAt(i, 0)));
-            saleDetailsM.setQuantity(Integer.valueOf((String) sellView.sellViewtbl.getValueAt(i, 2)));
-            saleDetailsM.setTotal(Double.parseDouble((String) sellView.sellViewtbl.getValueAt(i, 4)));
-            int result = saleDetailsDAO.checkDetails(saleDetailsM);
+            int id_product = Integer.parseInt(sellView.sellViewtbl.getValueAt(i, 0).toString());
+            saleDetailsM.setId_product(id_product);
+            int quantity = Integer.parseInt(sellView.sellViewtbl.getValueAt(i, 2).toString());
+            saleDetailsM.setQuantity(quantity);
+            double total = Double.parseDouble(sellView.sellViewtbl.getValueAt(i, 4).toString());
+            saleDetailsM.setTotal(total);
+            int result = saleDetailsDAO.checkSaleDetailsPurchase(saleDetailsM);
+            if (result > 0) {
+                System.out.println("agregado con exito");
+            } else {
+                System.out.println("error");
+            }
         }
     }
 
     //SaleMethods
     public void makePurchase() {
-        saleM.setId_seller(Integer.valueOf(sellView.selleridtxt.getText()));
-        saleM.setId_customer(Integer.valueOf(sellView.idcustomertxt.getText()));
-        saleM.setSell_number(sellView.salenumbertxt.getText());
-        saleM.setTotal(Double.valueOf(sellView.totalamounttxt.getText()));
-        int result = saleDAO.checkPurchase(saleM);
 
+        if (sellView.salenumbertxt.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Type number sale");
+            sellView.salenumbertxt.requestFocus();
+        } else {
+            saleM.setId_seller(Integer.valueOf(sellView.selleridtxt.getText()));
+            saleM.setId_customer(Integer.valueOf(sellView.idcustomertxt.getText()));
+            saleM.setSell_number(sellView.salenumbertxt.getText());
+            saleM.setTotal(Double.valueOf(sellView.totalamounttxt.getText()));
+            int result = saleDAO.checkSalePuchase(saleM);
+            if (result > 0) {
+                System.out.println("agregado con exito");
+            } else {
+                System.out.println("error");
+            }
+
+        }
     }
 
     //CRUD methods Product
@@ -534,6 +590,8 @@ public class ControlMenu implements ActionListener {
 
     public void updateProduct() {
 
+        productM.setName_product(productView.nametxt.getText());
+        productM.setPrice_product(Integer.parseInt(productView.pricetxt.getText()));
         productM.setStock_product(Boolean.parseBoolean(productView.stocktxt.getText()));
         productM.setId_product(Integer.valueOf(productView.idtxt.getText()));
         int result = productDAO.updateProduct(productM);
@@ -588,6 +646,10 @@ public class ControlMenu implements ActionListener {
             productView.stocktxt.setText(String.valueOf(stock));
 
         }
+    }
+    
+    public void importProductsToExcel(){
+        
     }
 
     //CRUD methods Customer
@@ -720,13 +782,22 @@ public class ControlMenu implements ActionListener {
             System.out.println("error");
         }
     }
-    
-    public void printingInFieldsSeller(){
+
+    public void printingInFieldsSeller() {
         int row = sellerView.sellertbl.getSelectedRow();
-        if(row == -1){
+        if (row == -1) {
             System.out.println("choose row");
-        }else{
-            
+        } else {
+            Integer id = (Integer) sellerView.sellertbl.getValueAt(row, 0);
+            String dni = (String) sellerView.sellertbl.getValueAt(row, 1);
+            String name = (String) sellerView.sellertbl.getValueAt(row, 2);
+            String phone = (String) sellerView.sellertbl.getValueAt(row, 3);
+            Integer status = (Integer) sellerView.sellertbl.getValueAt(row, 4);
+            sellerView.sellerdnitxt.setText(dni);
+            sellerView.sellernametxt.setText(name);
+            sellerView.selleridtxt.setText(String.valueOf(id));
+            sellerView.sellerphonetxt.setText(phone);
+            sellerView.sellerstatustxt.setText(String.valueOf(status));
         }
     }
 
@@ -781,9 +852,17 @@ public class ControlMenu implements ActionListener {
         sellerView.sellerstatustxt.setText("");
     }
 
+    public void clearSellView() {
+        sellView.productNametxt.setText("");
+        sellView.productPricetxt.setText("");
+        sellView.productStocktxt.setText("");
+        sellView.productidtxt.setText("");
+        sellView.sellQuantitytxt.setText("");
+    }
+
     //LoginMethods
     public void loginUsername() {
-
+        
         String name = loginView.usertxt.getText();
         String password = loginView.passwordtxt.getText();
         userM.setName(name);
