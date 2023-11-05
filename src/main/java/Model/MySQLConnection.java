@@ -12,18 +12,18 @@ import java.sql.SQLException;
 public class MySQLConnection {
     
     Connection connection = null;
-    private final String url = "url";
-    private final String user = "user";
-    private final String pass = "password";
-    
+    private final String url = "url"; //heres ur host
+    private final String user = "user";  //heres ur user
+    private final String pass = "password"; //your password    
     public Connection getConnection(){
         
         try{
-            
+            System.out.println(")");
             connection = DriverManager.getConnection(url,user,pass);
             
         }catch(SQLException s){
             System.out.println(s);
+            
         }
         return connection;
     }
