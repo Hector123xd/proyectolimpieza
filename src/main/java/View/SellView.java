@@ -126,9 +126,9 @@ public class SellView extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton2");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/graphsicon30x30.png"))); // NOI18N
 
-        jButton3.setText("jButton3");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/graphsicondailyicon30x30.png"))); // NOI18N
 
         datetimetxt.setEditable(false);
         datetimetxt.addActionListener(new java.awt.event.ActionListener() {
@@ -274,7 +274,10 @@ public class SellView extends javax.swing.JFrame {
                                     .addComponent(jLabel7)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel6)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(productidtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,18 +292,13 @@ public class SellView extends javax.swing.JFrame {
                             .addComponent(jButton2)
                             .addComponent(jButton3)
                             .addComponent(datetimetxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
+                        .addGap(48, 48, 48)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel9))
-                                .addGap(28, 28, 28))
                             .addComponent(deleteSellbtn)
                             .addComponent(saveSellbtn)))
                     .addComponent(searchProductbtn, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                 .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
