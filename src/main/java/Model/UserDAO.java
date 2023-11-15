@@ -1,6 +1,7 @@
 
 package Model;
 
+import View.Signup;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,6 +50,30 @@ public class UserDAO {
             System.out.println(s);
         }
         return result;
+    }
+    
+    public int createUser(User user){
+        
+        final String query = "INSERT INTO userdata (user_name,user_password) VALUES (?,?);";
+        
+        try(Connection c = con.getConnection();
+                PreparedStatement pst = c.prepareStatement(query)){
+            
+            pst.setString(1, user.getName());
+            pst.setString(2,user.getPassword());
+            
+            int result = pst.executeUpdate();
+            if(result > 0){
+                return 1;
+            }else{
+                return 0;
+            }
+            
+        }catch(SQLException s){
+            System.out.println(s);
+            return 0;
+        }
+        
     }
     
     public void getLoginInformation(int id){

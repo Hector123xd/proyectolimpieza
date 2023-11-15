@@ -12,9 +12,9 @@ import java.sql.SQLException;
 public class MySQLConnection {
     
     Connection connection = null;
-    private final String url = "url"; //heres ur host
-    private final String user = "user";  //heres ur user
-    private final String pass = "password"; //your password    
+    private final String url = "jdbc:mysql://localhost/tiendaliempieza"; //heres ur host
+    private final String user = "root";  //heres ur user
+    private final String pass = "190800"; //your password    
     public Connection getConnection(){
         
         try{

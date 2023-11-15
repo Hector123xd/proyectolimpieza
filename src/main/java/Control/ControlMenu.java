@@ -20,21 +20,40 @@ import View.ProductView;
 import View.SellView;
 import View.SellerView;
 import View.SettingsView;
+import View.Signup;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import static com.itextpdf.text.pdf.PdfDictionary.FONT;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+//import org.apache.poi.wp.usermodel.Paragraph;
 
 /**
  *
  * @author hecto
  */
 public class ControlMenu implements ActionListener {
-    
 
     //MenuFrame
     Menu menuView = new Menu();
@@ -76,12 +95,13 @@ public class ControlMenu implements ActionListener {
     User userM = new User();
     UserDAO userDAO = new UserDAO();
     Login loginView = new Login();
+    Signup signView = new Signup();
 
     //SettingFrame
     SettingsView settingsView = new SettingsView();
-    
+
     //ExcelReport
-    Report excel = new Report(); 
+    Report excel = new Report();
 
     Runnable runnable = new Runnable() {
         @Override
@@ -107,6 +127,9 @@ public class ControlMenu implements ActionListener {
         this.loginView = loginView;
         //LoginView
         this.loginView.signinbtn.addActionListener(this);
+        this.loginView.signupbtn.addActionListener(this);
+        //SignupView
+        this.signView.signupbtn.addActionListener(this);
         //MenuView
         this.menuView.sellerbtn.addActionListener(this);
         this.menuView.settingsbtn.addActionListener(this);
@@ -185,9 +208,14 @@ public class ControlMenu implements ActionListener {
         Thread thread = new Thread(runnable);
         thread.start();
     }
-    
-    ///////////////     LIST OF ALL EVENTS      /////////////////
 
+    public void showSignup() {
+        signView.setVisible(true);
+        signView.setLocationRelativeTo(null);
+        signView.setTitle("Sign up");
+    }
+
+    ///////////////     LIST OF ALL EVENTS      /////////////////
     @Override
     public void actionPerformed(ActionEvent e) {
         //Acciones de Login
@@ -201,6 +229,24 @@ public class ControlMenu implements ActionListener {
 
             }
 
+        }
+
+        if (e.getSource() == loginView.signupbtn) {
+
+            String pass = JOptionPane.showInputDialog("Type admin password: ");
+
+            if (pass.equals(password)) {
+                loginView.setVisible(false);
+                showSignup();
+            } else {
+                JOptionPane.showMessageDialog(null, "You have no permission");
+            }
+
+        }
+
+        //Acciones de Sign up
+        if (e.getSource() == signView.signupbtn) {
+            registerNewUser();
         }
 
         //Acciones de Menu
@@ -281,11 +327,10 @@ public class ControlMenu implements ActionListener {
             clearProductTable();
             readProductos(productView.prodcttbl);
         }
-        
-        if(e.getSource() == productView.excelbtn){
+
+        if (e.getSource() == productView.excelbtn) {
             excel.report();
         }
-        
 
         //////////////      Customer events       /////////////
         if (e.getSource() == customerView.deleteCustomerbtn) {
@@ -356,7 +401,7 @@ public class ControlMenu implements ActionListener {
             }
 
         }
-        
+
         if (e.getSource() == sellerView.sellersavebtn) {
             String pass = JOptionPane.showInputDialog("Type admin password: ");
 
@@ -400,28 +445,28 @@ public class ControlMenu implements ActionListener {
         if (e.getSource() == sellView.searchProductbtn) {
             seachProduct();
         }
-        
+
         if (e.getSource() == sellView.saveSellbtn) {
             addProductOnTable(sellView.sellViewtbl);
         }
-        
+
         if (e.getSource() == sellView.deleteSellbtn) {
             deleteProductOnTable(sellView.sellViewtbl);
         }
-        
+
         if (e.getSource() == sellView.searchcustomerbtn) {
             searchCustomer();
         }
-        
+
         if (e.getSource() == sellView.printcheckbtn) {
             makePurchase();
             makeDetailsPurchase();
+            savePDF();
         }
 
     }
 
     //////////////      LIST OF ALL METHODS         ///////////////
-    
     //SaleDetailsMethods
     public void seachProduct() {
 
@@ -647,9 +692,9 @@ public class ControlMenu implements ActionListener {
 
         }
     }
-    
-    public void importProductsToExcel(){
-        
+
+    public void importProductsToExcel() {
+
     }
 
     //CRUD methods Customer
@@ -862,7 +907,7 @@ public class ControlMenu implements ActionListener {
 
     //LoginMethods
     public void loginUsername() {
-        
+
         String name = loginView.usertxt.getText();
         String password = loginView.passwordtxt.getText();
         userM.setName(name);
@@ -872,6 +917,165 @@ public class ControlMenu implements ActionListener {
 
     public void logout() {
         System.exit(0);
+    }
+
+    //SignupMethods
+    public void registerNewUser() {
+
+        String name = signView.usertxt.getText();
+        String pass = signView.passwordtxt.getText();
+        String pass1 = signView.passwordtxt1.getText();
+        userM.setName(name);
+        userM.setPassword(pass);
+
+        if (!pass.equals(pass1)) {
+            JOptionPane.showMessageDialog(null, "passwords are not alike");
+            signView.passwordtxt.requestFocus();
+        } else {
+            int result = userDAO.createUser(userM);
+            if (result > 0) {
+                JOptionPane.showMessageDialog(null, "User created successfully");
+                signView.setVisible(false);
+                showLogin();
+            } else {
+
+            }
+
+        }
+
+    }
+
+    //PDFMethods
+    public void savePDF() {
+        try {
+            String idsell = sellView.salenumbertxt.getText();
+            FileOutputStream fileO;
+            File file = new File("src/main/java/pdf/venta.pdf");
+            fileO = new FileOutputStream(file);
+            Document doc = new Document();
+            PdfWriter.getInstance(doc, fileO);
+            doc.open();
+            Image img = Image.getInstance("src/main/resources/images/listar30x30.png");
+
+            Paragraph dateP = new Paragraph();
+            Font negrita = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.BLUE);
+            dateP.add(Chunk.NEWLINE);
+            Date date = new Date();
+            dateP.add("Factura 1: " + idsell + "\nFecha: " + new SimpleDateFormat("dd-MM-yyyy").format(date) + "\n\n");
+
+            PdfPTable header = new PdfPTable(4);
+            header.setWidthPercentage(100);
+            header.getDefaultCell().setBorder(0);
+            float[] headerColumn = new float[]{20f, 30f, 70f, 40f};
+            header.setWidths(headerColumn);
+            header.setHorizontalAlignment(Element.ALIGN_LEFT);
+
+            header.addCell(img);
+
+            String ruc = "2342335534";
+            String name = "Wipe it cleaner";
+            String phone = "3321344335";
+            String address = "Mexico Guadalajara Jal";
+            String ra = "Wipe it cleaner";
+
+            header.addCell("");
+            header.addCell("Ruc: " + ruc + " \nName: " + name + "\nPhone number: " + phone + "\nAddress: " + address + "\nRa: " + ra);
+            header.addCell(dateP);
+            doc.add(header);
+
+            Paragraph cli = new Paragraph();
+            cli.add(Chunk.NEWLINE);
+            cli.add("Customer Info: \n\n");
+            doc.add(cli);
+
+            PdfPTable tablecli = new PdfPTable(4);
+            tablecli.setWidthPercentage(100);
+            tablecli.getDefaultCell().setBorder(0);
+            float[] columncli = new float[]{20f, 50f, 30f, 40f};
+            tablecli.setWidths(columncli);
+            tablecli.setHorizontalAlignment(Element.ALIGN_LEFT);
+            PdfPCell cli1 = new PdfPCell(new Phrase("DNI/RUC", negrita));
+            PdfPCell cli2 = new PdfPCell(new Phrase("Name", negrita));
+            PdfPCell cli3 = new PdfPCell(new Phrase("Phone number", negrita));
+            PdfPCell cli4 = new PdfPCell(new Phrase("Address", negrita));
+            cli1.setBorder(0);
+            cli2.setBorder(0);
+            cli3.setBorder(0);
+            cli4.setBorder(0);
+            tablecli.addCell(cli1);
+            tablecli.addCell(cli2);
+            tablecli.addCell(cli3);
+            tablecli.addCell(cli4);
+            tablecli.addCell(sellView.idcustomertxt.getText());
+            tablecli.addCell(sellView.namecustomertxt.getText());
+            tablecli.addCell("");
+            tablecli.addCell(address);
+            doc.add(tablecli);
+
+            //Products
+            PdfPTable tablepro = new PdfPTable(4);
+            tablepro.setWidthPercentage(100);
+            tablepro.getDefaultCell().setBorder(0);
+            float[] columnpro = new float[]{10f, 50f, 15f, 20f};
+            tablepro.setWidths(columnpro);
+            tablepro.setHorizontalAlignment(Element.ALIGN_LEFT);
+            PdfPCell pro1 = new PdfPCell(new Phrase("Quantity", negrita));
+            PdfPCell pro2 = new PdfPCell(new Phrase("Name", negrita));
+            PdfPCell pro3 = new PdfPCell(new Phrase("Price", negrita));
+            PdfPCell pro4 = new PdfPCell(new Phrase("Total", negrita));
+            pro1.setBorder(0);
+            pro2.setBorder(0);
+            pro3.setBorder(0);
+            pro4.setBorder(0);
+            pro1.setBackgroundColor(BaseColor.DARK_GRAY);
+            pro2.setBackgroundColor(BaseColor.DARK_GRAY);
+            pro3.setBackgroundColor(BaseColor.DARK_GRAY);
+            pro4.setBackgroundColor(BaseColor.DARK_GRAY);
+            tablepro.addCell(pro1);
+            tablepro.addCell(pro2);
+            tablepro.addCell(pro3);
+            tablepro.addCell(pro4);
+            for (int i = 0; i < sellView.sellViewtbl.getRowCount(); i++) {
+
+                String Name = sellView.sellViewtbl.getValueAt(i, 1).toString();
+                String quantity = sellView.sellViewtbl.getValueAt(i, 2).toString();
+                String price = sellView.sellViewtbl.getValueAt(i, 3).toString();
+                String total = sellView.sellViewtbl.getValueAt(i, 4).toString();
+
+                tablepro.addCell(quantity);
+                tablepro.addCell(Name);
+                tablepro.addCell(price);
+                tablepro.addCell(total);
+
+            }
+
+            doc.add(tablepro);
+
+            Paragraph info = new Paragraph();
+            info.add(Chunk.NEWLINE);
+            info.add("Final amount: " + sellView.totalamounttxt.getText());
+            info.setAlignment(Element.ALIGN_RIGHT);
+            doc.add(info);
+
+            Paragraph sign = new Paragraph();
+            sign.add(Chunk.NEWLINE);
+            sign.add("Sign and agreement\n\n");
+            sign.add("---------------------------");
+            sign.setAlignment(Element.ALIGN_CENTER);
+            doc.add(sign);
+
+            Paragraph message = new Paragraph();
+            message.add(Chunk.NEWLINE);
+            message.add("Thanks for your purchase");
+            message.setAlignment(Element.ALIGN_CENTER);
+            doc.add(message);
+
+            doc.close();
+            fileO.close();
+
+        } catch (Exception e) {
+
+        }
     }
 
 }

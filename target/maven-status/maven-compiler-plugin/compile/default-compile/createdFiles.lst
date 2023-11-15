@@ -1,4 +1,5 @@
 View\SellView$5.class
+View\Signup$1.class
 View\SellerView$1.class
 View\Login$1.class
 View\ProductView$8.class
@@ -20,6 +21,7 @@ View\SellView$6.class
 View\Menu$2.class
 Model\ProductDAO.class
 Model\UserDAO.class
+View\Signup$2.class
 Model\MySQLConnection.class
 View\CustomerView.class
 View\SellerView$3.class
@@ -28,6 +30,7 @@ Model\SaleDetailsDAO.class
 Control\ControlMenu.class
 View\ProductView$5.class
 View\SellView$3.class
+View\Signup.class
 Model\CustomerDAO.class
 View\Menu$3.class
 View\ProductView$3.class
@@ -36,6 +39,7 @@ Model\Sale.class
 View\ProductView$6.class
 View\SellerView$2.class
 View\SettingsView.class
+View\Signup$3.class
 View\Login$3.class
 View\SellView$7.class
 Model\SellerDAO.class
@@ -49,7 +53,7 @@ View\SellView$1.class
 View\SellView$4.class
 ExcelP\Report.class
 Model\Customer.class
+View\Signup$4.class
 Model\User.class
-ExcelP\Excel.class
 View\SellView$8.class
 View\SellView.class
